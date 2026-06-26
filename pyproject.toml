@@ -8,7 +8,7 @@ copyright = "Copyright 2025 CSE Reviewer PH"
 module = "main"
 
 [tool.flet.android]
-min_sdk_version = 21
+min_sdk_version = 23
 target_sdk_version = 33
 permissions = [
     "android.permission.INTERNET",
