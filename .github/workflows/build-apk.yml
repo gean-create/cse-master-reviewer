@@ -35,8 +35,15 @@ jobs:
       - name: Build APK
         run: yes | flet build apk --no-rich-output
 
-      - uses: actions/upload-artifact@v4
+      - name: Find APK location
+        run: find . -name "*.apk" 2>/dev/null || echo "No APK found"
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
           name: cse-master-reviewer-apk
-          path: build/apk/app-release.apk
+          path: |
+            build/apk/*.apk
+            build/**/*.apk
+          if-no-files-found: warn
           retention-days: 30
