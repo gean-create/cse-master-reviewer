@@ -4,6 +4,7 @@ from theme import (BLUE, BLUE_50, BLUE_700, RED, RED_50, WHITE, DARK,
                    GRAY, GOLD, ORANGE, ORANGE_50, GREEN, GREEN_50,
                    APP_BG, BORDER, FONT_DISPLAY, PASSING_SCORE, SUBJECTS)
 import components as comp
+from subscription_service import get_trial_status
 from data.questions import by_subject
 import random
 
@@ -187,11 +188,55 @@ def build(page: ft.Page, state) -> ft.View:
         spacing=10,
     )
 
+
+    # ── Subscription banner ─────────────────────────────────────────
+    sub = get_trial_status(state.data)
+    if sub["trial_expired"] and not sub["is_premium"]:
+        upgrade_banner = ft.GestureDetector(
+            content=ft.Container(
+                content=ft.Row([
+                    ft.Icon(ft.Icons.LOCK_ROUNDED, color=WHITE, size=20),
+                    ft.Column([
+                        ft.Text("Free Trial Ended", size=13,
+                                weight=ft.FontWeight.W_700, color=WHITE),
+                        ft.Text("Upgrade for ₱150/year to continue",
+                                size=11, color=WHITE + "CC"),
+                    ], spacing=1, expand=True),
+                    ft.Icon(ft.Icons.CHEVRON_RIGHT_ROUNDED, color=WHITE, size=18),
+                ], spacing=10, vertical_alignment=ft.CrossAxisAlignment.CENTER),
+                bgcolor=RED,
+                border_radius=ft.BorderRadius.all(12),
+                padding=ft.Padding.symmetric(horizontal=14, vertical=12),
+            ),
+            on_tap=lambda _: page.go("/upgrade"),
+        )
+    elif sub["on_trial"]:
+        days = sub["trial_days_left"]
+        upgrade_banner = ft.GestureDetector(
+            content=ft.Container(
+                content=ft.Row([
+                    ft.Icon(ft.Icons.HOURGLASS_TOP_ROUNDED, color=BLUE, size=18),
+                    ft.Text(f"Free trial — {days} day{'s' if days != 1 else ''} left  •  Tap to upgrade",
+                            size=12, color=BLUE, expand=True),
+                    ft.Icon(ft.Icons.CHEVRON_RIGHT_ROUNDED, color=BLUE, size=16),
+                ], spacing=8),
+                bgcolor=BLUE_50,
+                border_radius=ft.BorderRadius.all(10),
+                padding=ft.Padding.symmetric(horizontal=12, vertical=10),
+                border=ft.Border.all(1, BLUE),
+            ),
+            on_tap=lambda _: page.go("/upgrade"),
+        )
+    else:
+        upgrade_banner = ft.Container()
+
     section = lambda title: ft.Text(
         title, size=14, weight=ft.FontWeight.W_700, color=DARK
     )
 
     controls = [
+        ft.Container(height=8),
+        upgrade_banner,
         ft.Container(height=8),
         greeting,
         ft.Container(height=16),
