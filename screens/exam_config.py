@@ -55,6 +55,22 @@ def build(page: ft.Page, state) -> ft.View:
         page.update()
 
     def on_start(_):
+        # Premium gate — mock exam is premium only
+        if not state.can_access_premium():
+            page.show_dialog(ft.AlertDialog(
+                title=ft.Text("Premium Feature", weight=ft.FontWeight.W_700),
+                content=ft.Text(
+                    "The full mock exam requires a Premium account.\n\n"
+                    "Upgrade for ₱150/year — less than ₱13/month!",
+                    size=13,
+                ),
+                actions=[
+                    comp.ghost_button("Cancel", on_click=lambda _: page.close_dialog()),
+                    comp.primary_button("Upgrade Now", expand=False,
+                                        on_click=lambda _: [page.close_dialog(), page.go("/upgrade")]),
+                ],
+            ))
+            return
         cfg = CONFIGS[selected[0]]
         state.exam_config = cfg
         state.active_mode = "exam"
