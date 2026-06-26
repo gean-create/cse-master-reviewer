@@ -68,7 +68,7 @@ def build(page: ft.Page, state) -> ft.View:
             return
         error_ref.current.visible = False
         state.create_profile(name, selected_track[0])
-        state.save_bg()
+        state.start_trial_if_new()
         page.go("/home")
 
     header = ft.Column(
