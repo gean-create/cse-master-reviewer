@@ -190,11 +190,11 @@ def build(page: ft.Page, state) -> ft.View:
         unanswered = total - answered
 
         def _confirm(_):
-            page.close_dialog()
+            page.pop_dialog()
             _finish_exam()
 
         def _cancel(_):
-            page.close_dialog()
+            page.pop_dialog()
 
         page.show_dialog(ft.AlertDialog(
             title=ft.Text("Submit Exam?", weight=ft.FontWeight.W_700),

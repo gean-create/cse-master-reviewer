@@ -113,13 +113,13 @@ def build(page: ft.Page, state) -> ft.View:
 
     def on_reset(_):
         def _confirm(_):
-            page.close_dialog()
+            page.pop_dialog()
             state.reset_progress()
             state.save_bg()
             page.go("/home")
 
         def _cancel(_):
-            page.close_dialog()
+            page.pop_dialog()
 
         dlg = ft.AlertDialog(
             title=ft.Text("Reset Progress?", weight=ft.FontWeight.W_700),
@@ -137,13 +137,13 @@ def build(page: ft.Page, state) -> ft.View:
 
     def on_logout(_):
         def _confirm(_):
-            page.close_dialog()
+            page.pop_dialog()
             state.log_out()
             state.save_bg()
             page.go("/login")
 
         def _cancel(_):
-            page.close_dialog()
+            page.pop_dialog()
 
         dlg = ft.AlertDialog(
             title=ft.Text("Log Out?", weight=ft.FontWeight.W_700),

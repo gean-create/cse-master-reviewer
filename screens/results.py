@@ -95,9 +95,9 @@ def build(page: ft.Page, state) -> ft.View:
                 title=ft.Text("Premium Feature", weight=ft.FontWeight.W_700),
                 content=ft.Text("Wrong answer review is a Premium feature.\nUpgrade for ₱150/year.", size=13),
                 actions=[
-                    comp.ghost_button("Cancel", on_click=lambda _: page.close_dialog()),
+                    comp.ghost_button("Cancel", on_click=lambda _: page.pop_dialog()),
                     comp.primary_button("Upgrade", expand=False,
-                                        on_click=lambda _: [page.close_dialog(), page.go("/upgrade")]),
+                                        on_click=lambda _: [page.pop_dialog(), page.go("/upgrade")]),
                 ],
             ))
             return
