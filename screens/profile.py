@@ -102,6 +102,9 @@ def build(page: ft.Page, state) -> ft.View:
             on_tap=on_tap,
         )
 
+    def go_upgrade(_):
+        page.go("/upgrade")
+
     def go_achievements(_):
         page.go("/achievements")
 
@@ -154,6 +157,10 @@ def build(page: ft.Page, state) -> ft.View:
 
     settings = ft.Column(
         [
+            settings_item(ft.Icons.STAR_ROUNDED,
+                          "Upgrade to Premium", go_upgrade,
+                          color=BLUE, bg_icon=BLUE_50, icon_color=BLUE),
+            ft.Container(height=8),
             settings_item(ft.Icons.EMOJI_EVENTS_ROUNDED,
                           "Achievements", go_achievements,
                           icon_color=GOLD, bg_icon="#FEF9EC"),
