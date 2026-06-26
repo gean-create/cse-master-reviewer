@@ -35,6 +35,7 @@ def _default_data():
         "wrong_answers": [],
         "streak": {"count": 0, "last_date": None},
         "onboarded": False,
+        "subscription": {},
     }
 
 
@@ -291,6 +292,20 @@ class AppState:
             day = dt.date.today() - dt.timedelta(days=i)
             out.append((day.strftime("%a")[0], counts.get(day.isoformat(), 0)))
         return out
+
+
+    # -------------------------------------------------------- subscription
+    def subscription_status(self):
+        from subscription_service import get_trial_status
+        return get_trial_status(self.data)
+
+    def can_access_premium(self) -> bool:
+        return self.subscription_status()["can_access_premium"]
+
+    def start_trial_if_new(self):
+        from subscription_service import start_trial
+        start_trial(self.data)
+        self.save_bg()
 
     def reset_progress(self):
         profile = self.data.get("profile")
