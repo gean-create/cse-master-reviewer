@@ -1,13 +1,13 @@
-"""Splash screen — auto-navigates after 1.5 s."""
+"""Splash screen with Civil Service Reviewer 2026 branding."""
 import asyncio
 import flet as ft
-from theme import BLUE, BLUE_700, WHITE, GOLD, FONT_DISPLAY
+from theme import NAVY, BLUE, GOLD, WHITE, BLUE_50
 
 
 def build(page: ft.Page, state) -> ft.View:
 
     async def _navigate():
-        await asyncio.sleep(1.5)
+        await asyncio.sleep(2.0)
         if not state.onboarded:
             page.go("/onboarding")
         elif not state.is_logged_in:
@@ -20,18 +20,43 @@ def build(page: ft.Page, state) -> ft.View:
     logo = ft.Container(
         content=ft.Column(
             [
+                # Logo image
                 ft.Container(
-                    content=ft.Text("CSE", size=36, weight=ft.FontWeight.W_800,
-                                    color=WHITE, font_family=FONT_DISPLAY),
-                    bgcolor=WHITE + "22",
-                    border_radius=ft.BorderRadius.all(20),
-                    padding=ft.Padding.symmetric(horizontal=24, vertical=16),
+                    content=ft.Image(
+                        src="/assets/icon.png",
+                        width=160,
+                        height=160,
+                        fit=ft.ImageFit.CONTAIN,
+                    ),
+                    border_radius=ft.BorderRadius.all(24),
                 ),
-                ft.Container(height=16),
-                ft.Text("Master Reviewer", size=22, weight=ft.FontWeight.W_700,
-                        color=WHITE, font_family=FONT_DISPLAY),
-                ft.Text("Philippine Civil Service Exam", size=13,
-                        color=WHITE + "BB"),
+                ft.Container(height=24),
+                ft.Text(
+                    "CIVIL SERVICE",
+                    size=28, weight=ft.FontWeight.W_900,
+                    color=WHITE,
+                    text_align=ft.TextAlign.CENTER,
+                    font_family="Georgia",
+                ),
+                ft.Text(
+                    "REVIEWER",
+                    size=20, weight=ft.FontWeight.W_700,
+                    color=GOLD,
+                    text_align=ft.TextAlign.CENTER,
+                    letter_spacing=6,
+                ),
+                ft.Container(height=4),
+                ft.Row(
+                    [
+                        ft.Container(width=40, height=2, bgcolor=GOLD + "66"),
+                        ft.Text("2026", size=16, weight=ft.FontWeight.W_700,
+                                color=GOLD),
+                        ft.Container(width=40, height=2, bgcolor=GOLD + "66"),
+                    ],
+                    alignment=ft.MainAxisAlignment.CENTER,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                    spacing=8,
+                ),
             ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             spacing=4,
@@ -39,31 +64,36 @@ def build(page: ft.Page, state) -> ft.View:
         alignment=ft.Alignment(0, 0),
     )
 
-    spinner = ft.ProgressRing(
-        width=28, height=28,
-        stroke_width=3,
-        color=GOLD,
-        bgcolor=WHITE + "33",
-    )
-
     body = ft.Container(
         content=ft.Column(
-            [logo, ft.Container(height=60), spinner],
+            [
+                ft.Container(expand=True),
+                logo,
+                ft.Container(expand=True),
+                ft.ProgressRing(
+                    width=24, height=24,
+                    stroke_width=3,
+                    color=GOLD,
+                    bgcolor=WHITE + "22",
+                ),
+                ft.Container(height=8),
+                ft.Text(
+                    "Powered by CSC-accredited content",
+                    size=11, color=WHITE + "66",
+                    text_align=ft.TextAlign.CENTER,
+                ),
+                ft.Container(height=40),
+            ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-            alignment=ft.MainAxisAlignment.CENTER,
+            expand=True,
         ),
-        gradient=ft.LinearGradient(
-            begin=ft.Alignment.TOP_LEFT,
-            end=ft.Alignment.BOTTOM_RIGHT,
-            colors=[BLUE, BLUE_700],
-        ),
+        bgcolor=NAVY,
         expand=True,
-        alignment=ft.Alignment(0, 0),
     )
 
     return ft.View(
         route="/splash",
         controls=[body],
         padding=0,
-        bgcolor=BLUE,
+        bgcolor=NAVY,
     )
