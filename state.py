@@ -115,8 +115,15 @@ class AppState:
         p = self.data.get("profile")
         return p.get("track", "Professional") if p else "Professional"
 
-    def create_profile(self, name: str, track: str):
-        self.data["profile"] = {"name": name.strip() or "Reviewer", "track": track}
+    def create_profile(self, name: str, track: str, email: str = "", user_id: str = ""):
+        import hashlib
+        uid = user_id or hashlib.md5((email or name).encode()).hexdigest()[:12]
+        self.data["profile"] = {
+            "name": name.strip() or "Reviewer",
+            "track": track,
+            "email": email.strip().lower(),
+            "user_id": uid,
+        }
         self.save_bg()
 
     def log_out(self):
