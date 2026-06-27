@@ -2,14 +2,15 @@
 org = "com.csereviewerph"
 product = "CSE Master Reviewer"
 company = "CSE Reviewer PH"
-copyright = "Copyright 2025 CSE Reviewer PH"
+copyright = "Copyright 2026 CSE Reviewer PH"
 
 [tool.flet.app]
 module = "main"
 
 [tool.flet.android]
 min_sdk_version = 24
-target_sdk_version = 33
+target_sdk_version = 34
+icon = "assets/logo.svg"
 permissions = [
     "android.permission.INTERNET",
     "android.permission.ACCESS_NETWORK_STATE",
