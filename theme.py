@@ -1,114 +1,98 @@
 """
-CSE Master Reviewer - Design tokens
-Ported 1:1 from the original HTML/CSS design system so the Flet app
-matches the approved visual design (Philippine flag color discipline:
-white-dominant surface, blue for navigation/education, red reserved
-strictly for exam/alert/CTA moments).
+CSE Master Reviewer 2026 — Design System
+Professional, clean, exam-focused UI.
 """
 import flet as ft
 
-# ---- Colors -----------------------------------------------------------
-WHITE = "#FFFFFF"
-OFF_WHITE = "#FAFAFA"
-SURFACE_TINT = "#F4F6FC"
-APP_BG = "#EEF0F4"
+# ── Brand Colors ────────────────────────────────────────────────────
+NAVY       = "#0D1B4B"   # Primary dark navy
+BLUE       = "#0038A8"   # Philippine flag blue
+BLUE_700   = "#002777"   # Darker blue
+BLUE_50    = "#EAF0FB"   # Light blue tint
+BLUE_100   = "#C8D9F5"   # Slightly deeper blue tint
+GOLD       = "#C9A04D"   # Philippine gold
+GOLD_LIGHT = "#F0D080"   # Light gold
+GOLD_50    = "#FEF9EC"   # Gold tint background
 
-BLUE = "#0038A8"
-BLUE_700 = "#002777"
-BLUE_50 = "#EAF0FB"
-BLUE_100 = "#D7E3F6"
+WHITE      = "#FFFFFF"
+OFF_WHITE  = "#F8F9FD"
+SURFACE    = "#FFFFFF"
+APP_BG     = "#F0F4FF"
 
-RED = "#CE1126"
-RED_50 = "#FCEAEC"
-RED_100 = "#F8D3D8"
+DARK       = "#0D1B4B"   # Main text = navy
+DARK_2     = "#1E2D5A"   # Secondary dark
+GRAY       = "#5A6B8A"   # Body text
+GRAY_SOFT  = "#8FA0BD"   # Placeholder / hint
+BORDER     = "#DCE3F0"   # Borders
 
-DARK = "#1A1A1A"
-GRAY = "#666666"
-GRAY_SOFT = "#9CA3AF"
-BORDER = "#ECEDF1"
+GREEN      = "#16A34A"
+GREEN_50   = "#DCFCE7"
+GREEN_100  = "#BBF7D0"
+RED        = "#DC2626"
+RED_50     = "#FEE2E2"
+ORANGE     = "#D97706"
+ORANGE_50  = "#FEF3C7"
 
-GREEN = "#22C55E"
-GREEN_50 = "#E9FAF0"
+# ── Typography ──────────────────────────────────────────────────────
+FONT_DISPLAY = "Georgia"
+FONT_BODY    = "Arial"
 
-ORANGE = "#F59E0B"
-ORANGE_50 = "#FEF3E2"
+FONT_URLS = {}   # Using system fonts — no CDN needed
 
-GOLD = "#C9A04D"
+# ── Subjects ────────────────────────────────────────────────────────
+SUBJECTS = ["Verbal Ability", "Numerical Ability",
+            "Analytical Ability", "General Information"]
 
-# ---- Radii --------------------------------------------------------------
-R_SM = 12
-R_MD = 16
-R_LG = 20
-R_XL = 24
-
-# ---- Fonts ---------------------------------------------------------------
-FONT_DISPLAY = "Plus Jakarta Sans"
-FONT_BODY = "Inter"
-
-FONT_URLS = {
-    "Plus Jakarta Sans": "https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4Iez5FdSbnLfAcW1YBI.ttf",
-    "Inter": "https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.ttf",
-}
-
-SUBJECTS = ["Verbal Ability", "Numerical Ability", "Analytical Ability", "General Information"]
-SUBJECT_SHORT = {
-    "Verbal Ability": "Verbal",
-    "Numerical Ability": "Numerical",
-    "Analytical Ability": "Analytical",
-    "General Information": "Gen. Info",
-}
 SUBJECT_ICONS = {
-    "Verbal Ability": ft.Icons.SPELLCHECK_ROUNDED,
-    "Numerical Ability": ft.Icons.CALCULATE_ROUNDED,
+    "Verbal Ability":     ft.Icons.SPELLCHECK_ROUNDED,
+    "Numerical Ability":  ft.Icons.CALCULATE_ROUNDED,
     "Analytical Ability": ft.Icons.PSYCHOLOGY_ROUNDED,
-    "General Information": ft.Icons.PUBLIC_ROUNDED,
+    "General Information":ft.Icons.PUBLIC_ROUNDED,
 }
-PASSING_SCORE = 0.80  # CSE actual passing percentage
 
+SUBJECT_COLORS = {
+    "Verbal Ability":     BLUE,
+    "Numerical Ability":  "#7C3AED",
+    "Analytical Ability": "#0891B2",
+    "General Information":GREEN,
+}
 
-def shadow_sm():
-    return ft.BoxShadow(blur_radius=10, spread_radius=0, color=ft.Colors.with_opacity(0.06, DARK), offset=ft.Offset(0, 2))
+# ── CSE Exam Config ─────────────────────────────────────────────────
+PASSING_SCORE = 0.80
 
-
-def shadow_md():
-    return ft.BoxShadow(blur_radius=24, spread_radius=0, color=ft.Colors.with_opacity(0.08, DARK), offset=ft.Offset(0, 8))
-
-
-def shadow_blue():
-    return ft.BoxShadow(blur_radius=20, spread_radius=0, color=ft.Colors.with_opacity(0.22, BLUE), offset=ft.Offset(0, 8))
-
-
-def shadow_red():
-    return ft.BoxShadow(blur_radius=20, spread_radius=0, color=ft.Colors.with_opacity(0.24, RED), offset=ft.Offset(0, 8))
-
-
-def text(value, size=14, weight=None, color=DARK, font=FONT_BODY, **kwargs):
-    return ft.Text(value, size=size, weight=weight, color=color, font_family=font, **kwargs)
-
-
-def h1(value, color=DARK):
-    return text(value, size=26, weight=ft.FontWeight.W_800, color=color, font=FONT_DISPLAY)
-
-
-def h2(value, color=DARK):
-    return text(value, size=20, weight=ft.FontWeight.W_700, color=color, font=FONT_DISPLAY)
-
-
-def h3(value, color=DARK):
-    return text(value, size=16, weight=ft.FontWeight.W_700, color=color, font=FONT_DISPLAY)
-
-
-def body(value, color=DARK, size=14):
-    return text(value, size=size, weight=ft.FontWeight.W_400, color=color, font=FONT_BODY)
-
-
-def body_strong(value, color=DARK, size=14):
-    return text(value, size=size, weight=ft.FontWeight.W_600, color=color, font=FONT_BODY)
-
-
-def caption(value, color=GRAY, size=12):
-    return text(value, size=size, weight=ft.FontWeight.W_500, color=color, font=FONT_BODY)
-
-
-def micro(value, color=GRAY_SOFT, size=11):
-    return text(value, size=size, weight=ft.FontWeight.W_500, color=color, font=FONT_BODY)
+EXAM_PARTS = {
+    "Professional": {
+        "total": 170,
+        "duration_min": 190,
+        "parts": [
+            {"name": "Part I — Verbal & Reading",       "weight": 0.30,
+             "categories": ["Vocabulary","Grammar","Reading Comprehension",
+                            "Word Analogy","Paragraph Organization"]},
+            {"name": "Part II — Clerical & Logic",      "weight": 0.35,
+             "categories": ["Number Series","Analogies",
+                            "Logical Reasoning","Data Interpretation"]},
+            {"name": "Part III — Numerical Ability",    "weight": 0.30,
+             "categories": ["Numerical Reasoning","Word Problems",
+                            "Data Sufficiency"]},
+            {"name": "Part IV — General Information",   "weight": 0.05,
+             "categories": ["Philippine Constitution","RA 6713",
+                            "Human Rights","Environmental Management"]},
+        ]
+    },
+    "Sub-Professional": {
+        "total": 165,
+        "duration_min": 160,
+        "parts": [
+            {"name": "Part I — Verbal",            "weight": 0.30,
+             "categories": ["Vocabulary","Grammar","Reading Comprehension"]},
+            {"name": "Part II — Clerical Ability", "weight": 0.35,
+             "categories": ["Filing","Coding","Records Management",
+                            "Office Procedures"]},
+            {"name": "Part III — Numerical",       "weight": 0.30,
+             "categories": ["Numerical Reasoning","Word Problems"]},
+            {"name": "Part IV — General Info",     "weight": 0.05,
+             "categories": ["Philippine Constitution","RA 6713",
+                            "General Knowledge"]},
+        ]
+    }
+}
