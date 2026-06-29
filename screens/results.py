@@ -90,18 +90,7 @@ def build(page: ft.Page, state) -> ft.View:
 
     # ── Actions ──────────────────────────────────────────────────
     def on_review(_):
-        if not state.can_access_premium():
-            page.show_dialog(ft.AlertDialog(
-                title=ft.Text("Premium Feature", weight=ft.FontWeight.W_700),
-                content=ft.Text("Wrong answer review is a Premium feature.\nUpgrade for ₱150/year.", size=13),
-                actions=[
-                    comp.ghost_button("Cancel", on_click=lambda _: page.pop_dialog()),
-                    comp.primary_button("Upgrade", expand=False,
-                                        on_click=lambda _: [page.pop_dialog(), page.go("/upgrade")]),
-                ],
-            ))
-            return
-        page.go("/review")
+                page.go("/review")
 
     def on_retake(_):
         qids = result.get("question_ids", [])
