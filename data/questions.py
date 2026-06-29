@@ -1,284 +1,776 @@
 """
-Sample question bank for CSE Master Reviewer.
-Original practice content written for this app, organized by the four
-CSE subject areas. Each question: id, subject, question, choices (4),
-answer (index 0-3), explanation.
+CSE Master Reviewer 2026 — Real CSC-Type Questions
+Based on official CSC exam coverage for Professional and Sub-Professional levels.
+All questions are original, CSC-aligned content.
 
-This is a STARTER bank meant to be expanded - swap in your own
-licensed/verified CSE reviewer content for production use.
+Professional Level Coverage:
+- Verbal Ability (Grammar, Vocabulary, Reading Comprehension, Paragraph Organization)
+- Numerical Ability (Basic Operations, Word Problems, Number Series)
+- Analytical Ability (Word Analogy, Data Interpretation, Logic, Abstract Reasoning)
+- General Information (Phil. Constitution, RA 6713, Human Rights, Environment)
+
+Sub-Professional Additional:
+- Clerical Ability (Filing, Coding, Spelling, Number Checking)
 """
 
 QUESTIONS = [
-    # ---------------- VERBAL ABILITY ----------------
-    {"id": "v1", "subject": "Verbal Ability",
-     "question": "Choose the word closest in meaning to METICULOUS.",
-     "choices": ["Careless", "Extremely careful", "Quick", "Forgetful"],
-     "answer": 1, "explanation": "Meticulous means showing great attention to detail; very careful and precise."},
-    {"id": "v2", "subject": "Verbal Ability",
-     "question": "Choose the word OPPOSITE in meaning to CANDID.",
-     "choices": ["Honest", "Deceptive", "Blunt", "Open"],
-     "answer": 1, "explanation": "Candid means open and honest; the opposite is deceptive or secretive."},
-    {"id": "v3", "subject": "Verbal Ability",
-     "question": "Complete the analogy: DOCTOR is to HOSPITAL as TEACHER is to ____.",
-     "choices": ["Classroom", "Book", "Student", "Pencil"],
-     "answer": 0, "explanation": "A doctor works in a hospital; a teacher works in a classroom — workplace relationship."},
-    {"id": "v4", "subject": "Verbal Ability",
-     "question": "Choose the sentence that is grammatically correct.",
-     "choices": ["Each of the applicants were interviewed yesterday.",
-                 "Each of the applicants was interviewed yesterday.",
-                 "Each of the applicants have been interviewed yesterday.",
-                 "Each of the applicants is interviewing yesterday."],
-     "answer": 1, "explanation": "\"Each\" is singular, so it takes the singular verb \"was\"."},
-    {"id": "v5", "subject": "Verbal Ability",
-     "question": "Fill in the blank: The committee ____ its decision after a long debate.",
-     "choices": ["reach", "reaches", "reached", "reaching"],
-     "answer": 2, "explanation": "Past tense \"reached\" fits since the action is already complete."},
-    {"id": "v6", "subject": "Verbal Ability",
-     "question": "Choose the word closest in meaning to AUSTERE.",
-     "choices": ["Luxurious", "Stern and plain", "Colorful", "Generous"],
-     "answer": 1, "explanation": "Austere describes something plain, simple, and without comfort or luxury."},
-    {"id": "v7", "subject": "Verbal Ability",
-     "question": "Identify the correctly punctuated sentence.",
-     "choices": ["Although it was raining, the parade continued.",
-                 "Although, it was raining the parade continued.",
-                 "Although it was raining the parade, continued.",
-                 "Although it was raining; the parade continued."],
-     "answer": 0, "explanation": "A comma follows an introductory dependent clause beginning with \"Although\"."},
-    {"id": "v8", "subject": "Verbal Ability",
-     "question": "Complete the analogy: PEN is to WRITER as SCALPEL is to ____.",
-     "choices": ["Patient", "Surgeon", "Hospital", "Nurse"],
-     "answer": 1, "explanation": "A pen is the writer's tool; a scalpel is the surgeon's tool — tool-to-user relationship."},
-    {"id": "v9", "subject": "Verbal Ability",
-     "question": "Choose the word OPPOSITE in meaning to DILIGENT.",
-     "choices": ["Hardworking", "Lazy", "Careful", "Punctual"],
-     "answer": 1, "explanation": "Diligent means hardworking and careful; its opposite is lazy."},
-    {"id": "v10", "subject": "Verbal Ability",
-     "question": "Choose the best replacement for the underlined idiom: \"She decided to BITE THE BULLET and accept the new role.\"",
-     "choices": ["avoid the decision", "face a difficult situation bravely", "celebrate happily", "ask for help"],
-     "answer": 1, "explanation": "\"Bite the bullet\" means to endure a painful or difficult situation with courage."},
-    {"id": "v11", "subject": "Verbal Ability",
-     "question": "Which word correctly completes: \"The manager, along with her staff, ____ present at the meeting.\"",
-     "choices": ["were", "was", "are", "have been"],
-     "answer": 1, "explanation": "The subject is \"the manager\" (singular); phrases set off by commas don't change subject-verb agreement."},
-    {"id": "v12", "subject": "Verbal Ability",
-     "question": "Choose the word closest in meaning to TRANSPARENT (as used in governance).",
-     "choices": ["Hidden", "Open and clear", "Confusing", "Biased"],
-     "answer": 1, "explanation": "In governance, transparent means open, clear, and accountable to the public."},
-    {"id": "v13", "subject": "Verbal Ability",
-     "question": "Complete the analogy: AUTHOR is to NOVEL as ARCHITECT is to ____.",
-     "choices": ["Building", "Hammer", "City", "Engineer"],
-     "answer": 0, "explanation": "An author creates a novel; an architect creates a building — creator-to-creation."},
-    {"id": "v14", "subject": "Verbal Ability",
-     "question": "Choose the sentence free of errors.",
-     "choices": ["Neither of the documents were signed.",
-                 "Neither of the documents was signed.",
-                 "Neither of the document was signed.",
-                 "Neither of the documents has signed."],
-     "answer": 1, "explanation": "\"Neither\" is singular and takes the singular verb \"was\"."},
-    {"id": "v15", "subject": "Verbal Ability",
-     "question": "Choose the word OPPOSITE in meaning to AMBIGUOUS.",
-     "choices": ["Unclear", "Clear", "Confusing", "Vague"],
-     "answer": 1, "explanation": "Ambiguous means open to more than one interpretation; its opposite is clear."},
 
-    # ---------------- NUMERICAL ABILITY ----------------
-    {"id": "n1", "subject": "Numerical Ability",
-     "question": "What is 15% of 240?",
-     "choices": ["32", "36", "24", "40"],
-     "answer": 1, "explanation": "0.15 x 240 = 36."},
-    {"id": "n2", "subject": "Numerical Ability",
-     "question": "A train travels 180 km in 3 hours. What is its average speed?",
-     "choices": ["50 km/h", "55 km/h", "60 km/h", "65 km/h"],
-     "answer": 2, "explanation": "Speed = distance ÷ time = 180 ÷ 3 = 60 km/h."},
-    {"id": "n3", "subject": "Numerical Ability",
-     "question": "If 5 workers can finish a job in 12 days, how many days will 10 workers take to finish the same job (same rate)?",
-     "choices": ["4 days", "6 days", "8 days", "10 days"],
-     "answer": 1, "explanation": "Work is constant: 5 x 12 = 60 worker-days; 60 ÷ 10 = 6 days."},
-    {"id": "n4", "subject": "Numerical Ability",
-     "question": "What is the next number in the series: 2, 6, 12, 20, 30, ____?",
-     "choices": ["36", "40", "42", "44"],
-     "answer": 2, "explanation": "Differences increase by 2 each time (4, 6, 8, 10, 12): 30 + 12 = 42."},
-    {"id": "n5", "subject": "Numerical Ability",
-     "question": "A shirt originally priced at PHP 800 is on sale for 25% off. What is the sale price?",
-     "choices": ["PHP 600", "PHP 650", "PHP 700", "PHP 750"],
-     "answer": 0, "explanation": "25% of 800 = 200; 800 − 200 = 600."},
-    {"id": "n6", "subject": "Numerical Ability",
-     "question": "The ratio of boys to girls in a class is 3:4. If there are 28 students, how many are boys?",
-     "choices": ["10", "12", "14", "16"],
-     "answer": 1, "explanation": "Total parts = 7; each part = 28 ÷ 7 = 4; boys = 3 x 4 = 12."},
-    {"id": "n7", "subject": "Numerical Ability",
-     "question": "What is the average of 14, 18, 22, 26, and 30?",
-     "choices": ["20", "22", "24", "26"],
-     "answer": 1, "explanation": "Sum = 110; 110 ÷ 5 = 22."},
-    {"id": "n8", "subject": "Numerical Ability",
-     "question": "If x + 7 = 19, what is the value of 3x?",
-     "choices": ["30", "33", "36", "39"],
-     "answer": 2, "explanation": "x = 12; 3x = 36."},
-    {"id": "n9", "subject": "Numerical Ability",
-     "question": "A rectangular room is 8 meters long and 5 meters wide. What is its area?",
-     "choices": ["13 sq.m", "26 sq.m", "40 sq.m", "45 sq.m"],
-     "answer": 2, "explanation": "Area = length x width = 8 x 5 = 40 sq.m."},
-    {"id": "n10", "subject": "Numerical Ability",
-     "question": "A government office processed 480 applications in 8 days. At the same rate, how many will it process in 15 days?",
-     "choices": ["800", "850", "900", "950"],
-     "answer": 2, "explanation": "480 ÷ 8 = 60 per day; 60 x 15 = 900."},
-    {"id": "n11", "subject": "Numerical Ability",
-     "question": "What is 7/8 expressed as a percentage?",
-     "choices": ["75%", "82.5%", "87.5%", "90%"],
-     "answer": 2, "explanation": "7 ÷ 8 = 0.875 = 87.5%."},
-    {"id": "n12", "subject": "Numerical Ability",
-     "question": "Find the next number: 1, 4, 9, 16, 25, ____?",
-     "choices": ["30", "32", "36", "49"],
-     "answer": 2, "explanation": "These are perfect squares (1²,2²,3²,4²,5²); next is 6² = 36."},
-    {"id": "n13", "subject": "Numerical Ability",
-     "question": "A salary of PHP 25,000 is increased by 8%. What is the new salary?",
-     "choices": ["PHP 26,000", "PHP 26,500", "PHP 27,000", "PHP 27,500"],
-     "answer": 2, "explanation": "8% of 25,000 = 2,000; 25,000 + 2,000 = 27,000."},
-    {"id": "n14", "subject": "Numerical Ability",
-     "question": "Two numbers are in the ratio 5:6. Their sum is 99. What is the larger number?",
-     "choices": ["45", "48", "54", "60"],
-     "answer": 2, "explanation": "Total parts = 11; each part = 9; larger = 6 x 9 = 54."},
-    {"id": "n15", "subject": "Numerical Ability",
-     "question": "If a clerk types 40 words per minute, how many minutes will it take to type 1,000 words?",
-     "choices": ["20", "22.5", "25", "27.5"],
-     "answer": 2, "explanation": "1000 ÷ 40 = 25 minutes."},
+# ═══════════════════════════════════════════════════════
+# VERBAL ABILITY — VOCABULARY (English)
+# ═══════════════════════════════════════════════════════
+{"id":"v001","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"Choose the word closest in meaning to BENEVOLENT.",
+ "choices":["Cruel","Kind","Strict","Indifferent"],
+ "answer":1,
+ "explanation":"Benevolent means well-meaning and kindly. It comes from Latin 'bene' (well) + 'volent' (wishing)."},
 
-    # ---------------- ANALYTICAL ABILITY ----------------
-    {"id": "a1", "subject": "Analytical Ability",
-     "question": "All clerks are punctual. Maria is a clerk. Which conclusion follows?",
-     "choices": ["Maria is punctual.", "Maria is not punctual.", "All punctual people are clerks.", "No conclusion follows."],
-     "answer": 0, "explanation": "This is a valid syllogism: if all clerks are punctual and Maria is a clerk, then Maria is punctual."},
-    {"id": "a2", "subject": "Analytical Ability",
-     "question": "Find the odd one out: Square, Triangle, Circle, Bookshelf.",
-     "choices": ["Square", "Triangle", "Circle", "Bookshelf"],
-     "answer": 3, "explanation": "Square, triangle, and circle are shapes; bookshelf is a piece of furniture."},
-    {"id": "a3", "subject": "Analytical Ability",
-     "question": "If all Cats are Animals and some Animals are Pets, which statement must be true?",
-     "choices": ["All Cats are Pets.", "Some Cats are Pets.", "No Cats are Pets.", "None of the above is certain."],
-     "answer": 3, "explanation": "We cannot be certain cats fall in the overlapping \"pets\" group from the given information."},
-    {"id": "a4", "subject": "Analytical Ability",
-     "question": "Complete the pattern: A, C, F, J, O, ____?",
-     "choices": ["S", "T", "U", "V"],
-     "answer": 2, "explanation": "Gaps increase by 1 each time (+2,+3,+4,+5,+6): O + 6 letters = U."},
-    {"id": "a5", "subject": "Analytical Ability",
-     "question": "Ana is taller than Ben. Ben is taller than Cara. Who is the shortest?",
-     "choices": ["Ana", "Ben", "Cara", "Cannot be determined"],
-     "answer": 2, "explanation": "Ana > Ben > Cara in height, so Cara is the shortest."},
-    {"id": "a6", "subject": "Analytical Ability",
-     "question": "If MONDAY is coded as NPOEBZ (each letter shifted +1), how is FRIDAY coded?",
-     "choices": ["GSJEBZ", "GSJEZB", "GTJEBZ", "FSJEBZ"],
-     "answer": 0, "explanation": "Shifting each letter of FRIDAY forward by one gives G-S-J-E-B-Z."},
-    {"id": "a7", "subject": "Analytical Ability",
-     "question": "Five people sit in a row. Dan sits right of Eli. Eli sits right of Fe. Who sits leftmost among these three?",
-     "choices": ["Dan", "Eli", "Fe", "Cannot be determined"],
-     "answer": 2, "explanation": "Order from left to right is Fe, Eli, Dan — so Fe is leftmost."},
-    {"id": "a8", "subject": "Analytical Ability",
-     "question": "Find the odd one out: 8, 27, 64, 100, 125.",
-     "choices": ["8", "27", "100", "125"],
-     "answer": 2, "explanation": "8, 27, 64, and 125 are perfect cubes (2³,3³,4³,5³); 100 is not a perfect cube."},
-    {"id": "a9", "subject": "Analytical Ability",
-     "question": "No public servants are corrupt. Some officials are public servants. What follows?",
-     "choices": ["No officials are corrupt.", "Some officials are not corrupt.", "All officials are corrupt.", "Some officials are public servants who are not corrupt."],
-     "answer": 3, "explanation": "Since some officials are public servants, and no public servants are corrupt, those officials are not corrupt."},
-    {"id": "a10", "subject": "Analytical Ability",
-     "question": "Complete the series: 3, 9, 27, 81, ____?",
-     "choices": ["162", "189", "243", "256"],
-     "answer": 2, "explanation": "Each term is multiplied by 3: 81 x 3 = 243."},
-    {"id": "a11", "subject": "Analytical Ability",
-     "question": "If today is Wednesday, what day will it be 17 days from now?",
-     "choices": ["Saturday", "Sunday", "Monday", "Tuesday"],
-     "answer": 0, "explanation": "17 ÷ 7 = 2 remainder 3; 3 days after Wednesday is Saturday."},
-    {"id": "a12", "subject": "Analytical Ability",
-     "question": "Which word pair matches the relationship WHEEL is to CAR as PAGE is to ____?",
-     "choices": ["Pencil", "Book", "Library", "Author"],
-     "answer": 1, "explanation": "A wheel is a part of a car; a page is a part of a book — part-to-whole relationship."},
-    {"id": "a13", "subject": "Analytical Ability",
-     "question": "A box contains only red and blue balls. If it is false that \"all balls are red,\" which must be true?",
-     "choices": ["All balls are blue.", "No balls are red.", "At least one ball is blue.", "At least one ball is red."],
-     "answer": 2, "explanation": "If not all balls are red, then at least one ball must be a different color (blue)."},
-    {"id": "a14", "subject": "Analytical Ability",
-     "question": "Complete the pattern: 2, 5, 11, 23, 47, ____?",
-     "choices": ["83", "94", "95", "96"],
-     "answer": 2, "explanation": "Each term doubles the previous and adds 1 (2x2+1=5, 5x2+1=11...): 47x2+1 = 95."},
-    {"id": "a15", "subject": "Analytical Ability",
-     "question": "Three friends, X, Y, and Z, have different ages. X is older than Y. Z is younger than Y. Who is the oldest?",
-     "choices": ["X", "Y", "Z", "Cannot be determined"],
-     "answer": 0, "explanation": "X > Y > Z, so X is the oldest."},
+{"id":"v002","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"Which word is the OPPOSITE of VERBOSE?",
+ "choices":["Talkative","Concise","Eloquent","Wordy"],
+ "answer":1,
+ "explanation":"Verbose means using more words than needed. Its opposite is concise — expressing much in few words."},
 
-    # ---------------- GENERAL INFORMATION ----------------
-    {"id": "g1", "subject": "General Information",
-     "question": "The Philippine Constitution currently in effect was ratified in what year?",
-     "choices": ["1973", "1987", "1992", "1998"],
-     "answer": 1, "explanation": "The 1987 Constitution was ratified following a national plebiscite after the 1986 EDSA Revolution."},
-    {"id": "g2", "subject": "General Information",
-     "question": "Which branch of Philippine government is primarily responsible for interpreting laws?",
-     "choices": ["Executive", "Legislative", "Judiciary", "Civil Service Commission"],
-     "answer": 2, "explanation": "The Judiciary, headed by the Supreme Court, interprets laws and settles legal disputes."},
-    {"id": "g3", "subject": "General Information",
-     "question": "The Philippine Congress is composed of which two chambers?",
-     "choices": ["House of Representatives and Senate", "Senate and Cabinet", "House of Representatives and Cabinet", "Senate and Supreme Court"],
-     "answer": 0, "explanation": "The Philippine Congress is bicameral, made up of the Senate and the House of Representatives."},
-    {"id": "g4", "subject": "General Information",
-     "question": "Which government agency administers the Civil Service Examination?",
-     "choices": ["Department of Education", "Civil Service Commission (CSC)", "Commission on Elections", "Department of Labor and Employment"],
-     "answer": 1, "explanation": "The Civil Service Commission (CSC) is the central personnel agency that administers the CSE."},
-    {"id": "g5", "subject": "General Information",
-     "question": "RA 6713 is also known as the Code of Conduct and Ethical Standards for ____.",
-     "choices": ["Private Employees", "Public Officials and Employees", "Students", "Local Businesses"],
-     "answer": 1, "explanation": "RA 6713 sets the code of conduct and ethical standards for public officials and employees."},
-    {"id": "g6", "subject": "General Information",
-     "question": "What is the term of office of a Philippine President under the 1987 Constitution?",
-     "choices": ["4 years, eligible for re-election", "6 years, no re-election", "6 years, eligible for re-election", "5 years, no re-election"],
-     "answer": 1, "explanation": "The President serves a single 6-year term with no re-election allowed."},
-    {"id": "g7", "subject": "General Information",
-     "question": "How many main island groups make up the Philippines?",
-     "choices": ["Two", "Three", "Four", "Five"],
-     "answer": 1, "explanation": "The Philippines is divided into three main island groups: Luzon, Visayas, and Mindanao."},
-    {"id": "g8", "subject": "General Information",
-     "question": "Which document outlines the duties, powers, and structure of the Philippine government?",
-     "choices": ["The Civil Code", "The Constitution", "The Labor Code", "The Revised Penal Code"],
-     "answer": 1, "explanation": "The Constitution is the supreme law that defines the structure and powers of government."},
-    {"id": "g9", "subject": "General Information",
-     "question": "Who has the power to declare a state of martial law in the Philippines?",
-     "choices": ["The Chief Justice", "The Senate President", "The President", "The Civil Service Commission"],
-     "answer": 2, "explanation": "Under the Constitution, the President, as Commander-in-Chief, may declare martial law subject to checks by Congress and the Supreme Court."},
-    {"id": "g10", "subject": "General Information",
-     "question": "What is the minimum voting age in the Philippines?",
-     "choices": ["16", "17", "18", "21"],
-     "answer": 2, "explanation": "Filipino citizens may vote starting at age 18."},
-    {"id": "g11", "subject": "General Information",
-     "question": "Which of the following is a core value emphasized in public service ethics?",
-     "choices": ["Secrecy", "Accountability", "Favoritism", "Delay"],
-     "answer": 1, "explanation": "Accountability to the public is a core principle of ethical public service."},
-    {"id": "g12", "subject": "General Information",
-     "question": "The Local Government Code primarily governs which of the following?",
-     "choices": ["National elections", "Powers and functions of local government units", "Foreign relations", "Tax collection by the BIR only"],
-     "answer": 1, "explanation": "The Local Government Code defines the powers, structure, and functions of local government units."},
-    {"id": "g13", "subject": "General Information",
-     "question": "What is the official seat of the Philippine national government?",
-     "choices": ["Cebu City", "Davao City", "Metro Manila", "Baguio City"],
-     "answer": 2, "explanation": "Metro Manila is the seat of the national government of the Philippines."},
-    {"id": "g14", "subject": "General Information",
-     "question": "Which of these best describes \"due process\" as a constitutional right?",
-     "choices": ["Right to vote in elections", "Fair legal procedure before deprivation of life, liberty, or property", "Right to run for office", "Right to free education"],
-     "answer": 1, "explanation": "Due process guarantees fair legal procedures before government may deprive a person of life, liberty, or property."},
-    {"id": "g15", "subject": "General Information",
-     "question": "Probationary employment for first-time government appointees typically lasts how long before regularization (general rule)?",
-     "choices": ["3 months", "6 months", "1 year", "2 years"],
-     "answer": 1, "explanation": "Under civil service rules, original appointments are generally probationary for six months."},
+{"id":"v003","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"The word AMELIORATE most nearly means:",
+ "choices":["Worsen","Improve","Maintain","Ignore"],
+ "answer":1,
+ "explanation":"Ameliorate means to make something bad or unsatisfactory better."},
+
+{"id":"v004","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"DILIGENT is to LAZINESS as BRAVE is to:",
+ "choices":["Courage","Boldness","Cowardice","Strength"],
+ "answer":2,
+ "explanation":"Diligent is the opposite of laziness. Brave is the opposite of cowardice."},
+
+{"id":"v005","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"Choose the word OPPOSITE in meaning to OBSCURE.",
+ "choices":["Dark","Clear","Hidden","Vague"],
+ "answer":1,
+ "explanation":"Obscure means not discovered or known. Its antonym is clear or obvious."},
+
+{"id":"v006","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"EPHEMERAL most nearly means:",
+ "choices":["Permanent","Long-lasting","Short-lived","Ancient"],
+ "answer":2,
+ "explanation":"Ephemeral means lasting for a very short time. Example: ephemeral pleasures."},
+
+{"id":"v007","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"The word PRUDENT means:",
+ "choices":["Reckless","Wise and careful","Generous","Timid"],
+ "answer":1,
+ "explanation":"Prudent means acting with or showing care and thought for the future."},
+
+{"id":"v008","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"Choose the synonym of ELOQUENT.",
+ "choices":["Speechless","Articulate","Confused","Quiet"],
+ "answer":1,
+ "explanation":"Eloquent means fluent or persuasive in speaking or writing."},
+
+{"id":"v009","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"FRUGAL is most similar in meaning to:",
+ "choices":["Wasteful","Generous","Thrifty","Extravagant"],
+ "answer":2,
+ "explanation":"Frugal means sparing or economical with regard to food or money."},
+
+{"id":"v010","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"The word INCESSANT means:",
+ "choices":["Occasional","Rare","Continuous","Brief"],
+ "answer":2,
+ "explanation":"Incessant means continuing without pause or interruption."},
+
+{"id":"v011","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"TENACIOUS most nearly means:",
+ "choices":["Weak","Persistent","Flexible","Careless"],
+ "answer":1,
+ "explanation":"Tenacious means tending to keep a firm hold of something; not readily letting go."},
+
+{"id":"v012","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"Choose the word OPPOSITE to LOQUACIOUS.",
+ "choices":["Talkative","Reserved","Loud","Friendly"],
+ "answer":1,
+ "explanation":"Loquacious means tending to talk a great deal. Its opposite is reserved or silent."},
+
+{"id":"v013","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"INDOLENT means:",
+ "choices":["Hardworking","Lazy","Energetic","Ambitious"],
+ "answer":1,
+ "explanation":"Indolent means wanting to avoid activity or exertion; lazy."},
+
+{"id":"v014","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"The word MAGNANIMOUS means:",
+ "choices":["Selfish","Petty","Generous in spirit","Angry"],
+ "answer":2,
+ "explanation":"Magnanimous means very generous or forgiving, especially toward a rival or less powerful person."},
+
+{"id":"v015","track":"both","subject":"Verbal Ability","category":"Vocabulary",
+ "question":"ACRIMONY most nearly means:",
+ "choices":["Kindness","Bitterness","Joy","Neutrality"],
+ "answer":1,
+ "explanation":"Acrimony means bitterness or ill feeling, especially in speech or manner."},
+
+# ═══════════════════════════════════════════════════════
+# VERBAL ABILITY — GRAMMAR AND CORRECT USAGE
+# ═══════════════════════════════════════════════════════
+{"id":"v016","track":"both","subject":"Verbal Ability","category":"Grammar",
+ "question":"Choose the grammatically correct sentence.",
+ "choices":[
+     "Neither of the students have submitted their assignment.",
+     "Neither of the students has submitted their assignment.",
+     "Neither of the students has submitted his or her assignment.",
+     "Neither of the students have submitted his or her assignment."
+ ],
+ "answer":2,
+ "explanation":"'Neither' takes a singular verb ('has'). When referring to mixed genders, use 'his or her'."},
+
+{"id":"v017","track":"both","subject":"Verbal Ability","category":"Grammar",
+ "question":"Which sentence is grammatically CORRECT?",
+ "choices":[
+     "Everyone must submit their report on time.",
+     "Everyone must submit his or her report on time.",
+     "Everyone must submit its report on time.",
+     "Everyone must submit our report on time."
+ ],
+ "answer":1,
+ "explanation":"'Everyone' is singular and takes singular pronouns 'his or her' in formal writing."},
+
+{"id":"v018","track":"both","subject":"Verbal Ability","category":"Grammar",
+ "question":"Select the sentence with correct subject-verb agreement.",
+ "choices":[
+     "The committee have reached a decision.",
+     "The committee has reached a decision.",
+     "The committee are reaching a decision.",
+     "The committee were reaching a decision."
+ ],
+ "answer":1,
+ "explanation":"'Committee' as a collective noun acting as a unit takes a singular verb 'has'."},
+
+{"id":"v019","track":"both","subject":"Verbal Ability","category":"Grammar",
+ "question":"Which sentence uses the correct verb tense?",
+ "choices":[
+     "She had already left when I arrived.",
+     "She has already left when I arrived.",
+     "She already left when I had arrived.",
+     "She already leave when I arrived."
+ ],
+ "answer":0,
+ "explanation":"Past perfect 'had left' is correct because she left before another past action (arriving)."},
+
+{"id":"v020","track":"both","subject":"Verbal Ability","category":"Grammar",
+ "question":"Identify the error in: 'The data shows a significant increase.'",
+ "choices":[
+     "The should be An",
+     "Data is plural and should take 'show'",
+     "Significant should be significantly",
+     "No error"
+ ],
+ "answer":1,
+ "explanation":"'Data' is the plural of 'datum' and traditionally takes a plural verb: 'The data show'."},
+
+{"id":"v021","track":"both","subject":"Verbal Ability","category":"Grammar",
+ "question":"Choose the correct form: 'Between you and ___'",
+ "choices":["I","me","myself","we"],
+ "answer":1,
+ "explanation":"After prepositions like 'between', use the objective pronoun 'me', not 'I'."},
+
+{"id":"v022","track":"both","subject":"Verbal Ability","category":"Grammar",
+ "question":"Which is the correct sentence?",
+ "choices":[
+     "Laying on the beach, the sun was hot.",
+     "While laying on the beach, the sun was hot.",
+     "Lying on the beach, she felt the hot sun.",
+     "She was laying on the beach feeling hot."
+ ],
+ "answer":2,
+ "explanation":"'Lying' (not 'laying') is correct for resting. The subject must match the participial phrase."},
+
+{"id":"v023","track":"both","subject":"Verbal Ability","category":"Grammar",
+ "question":"Which sentence has correct punctuation?",
+ "choices":[
+     "The governor however approved the budget.",
+     "The governor, however, approved the budget.",
+     "The governor however, approved the budget.",
+     "The governor, however approved the budget."
+ ],
+ "answer":1,
+ "explanation":"Transitional words like 'however' used mid-sentence are set off by commas on both sides."},
+
+{"id":"v024","track":"both","subject":"Verbal Ability","category":"Grammar",
+ "question":"Identify the correct sentence.",
+ "choices":[
+     "She is one of the employees who works overtime.",
+     "She is one of the employees who work overtime.",
+     "She is one of the employee who work overtime.",
+     "She is one of the employees which works overtime."
+ ],
+ "answer":1,
+ "explanation":"'Who work' is correct — the antecedent is 'employees' (plural), so the verb is plural."},
+
+{"id":"v025","track":"both","subject":"Verbal Ability","category":"Grammar",
+ "question":"Choose the correct word: 'The effect of stress ___ productivity.'",
+ "choices":["affect","effects","affects","affection"],
+ "answer":2,
+ "explanation":"'Affects' is the verb form. 'Effect' is usually a noun; 'affect' is usually a verb."},
+
+# ═══════════════════════════════════════════════════════
+# VERBAL ABILITY — READING COMPREHENSION
+# ═══════════════════════════════════════════════════════
+{"id":"v026","track":"both","subject":"Verbal Ability","category":"Reading Comprehension",
+ "question":"Read the passage: 'The Civil Service Commission was established to ensure that government positions are filled through merit and fitness. It oversees examinations, appointments, and discipline of civil servants.' What is the PRIMARY purpose of the CSC?",
+ "choices":[
+     "To conduct all government examinations",
+     "To ensure merit-based government employment",
+     "To discipline erring public officials",
+     "To review government appointments"
+ ],
+ "answer":1,
+ "explanation":"The passage clearly states the primary purpose is ensuring positions are filled through merit and fitness."},
+
+{"id":"v027","track":"both","subject":"Verbal Ability","category":"Reading Comprehension",
+ "question":"Passage: 'RA 6713 requires all public officials to perform duties with the highest degree of excellence, professionalism, intelligence, and skill. They must serve with utmost devotion and dedication to duty.' According to the passage, government officials must perform their duties with:",
+ "choices":[
+     "Speed and efficiency only",
+     "Excellence, professionalism, intelligence, and skill",
+     "Loyalty to their superiors",
+     "Political neutrality and integrity"
+ ],
+ "answer":1,
+ "explanation":"The passage directly states these four qualities: excellence, professionalism, intelligence, and skill."},
+
+{"id":"v028","track":"both","subject":"Verbal Ability","category":"Reading Comprehension",
+ "question":"Passage: 'The Philippine Constitution is the supreme law of the land. No law, executive order, or government act may contradict it. When conflict arises, the Constitution prevails.' What happens when a law conflicts with the Constitution?",
+ "choices":[
+     "The law prevails over the Constitution",
+     "The President decides which one to follow",
+     "The Constitution prevails",
+     "Congress must pass a new law"
+ ],
+ "answer":2,
+ "explanation":"The passage explicitly states: 'When conflict arises, the Constitution prevails.'"},
+
+{"id":"v029","track":"both","subject":"Verbal Ability","category":"Reading Comprehension",
+ "question":"Passage: 'Merit system promotes equal opportunity regardless of political affiliation, gender, or religion. Selection is based on qualifications and performance.' The merit system PRIMARILY promotes:",
+ "choices":[
+     "Political connections in hiring",
+     "Equal opportunity based on qualifications",
+     "Preferential treatment for women",
+     "Religious tolerance in the workplace"
+ ],
+ "answer":1,
+ "explanation":"The passage defines merit system as promoting equal opportunity based on qualifications and performance."},
+
+{"id":"v030","track":"both","subject":"Verbal Ability","category":"Reading Comprehension",
+ "question":"Passage: 'Paragraph organization requires that each paragraph contain one main idea supported by relevant details. A clear topic sentence tells readers what the paragraph is about.' What is the function of a topic sentence?",
+ "choices":[
+     "To conclude the paragraph",
+     "To provide supporting details",
+     "To tell readers what the paragraph is about",
+     "To transition to the next paragraph"
+ ],
+ "answer":2,
+ "explanation":"The passage states: 'A clear topic sentence tells readers what the paragraph is about.'"},
+
+# ═══════════════════════════════════════════════════════
+# VERBAL ABILITY — PARAGRAPH ORGANIZATION
+# ═══════════════════════════════════════════════════════
+{"id":"v031","track":"professional","subject":"Verbal Ability","category":"Paragraph Organization",
+ "question":"Arrange these sentences logically: (1) Finally, submit the completed form to the CSC office. (2) First, obtain the application form from the CSC website. (3) Then, fill in all required information accurately. (4) Next, attach all required documents.",
+ "choices":["2,3,4,1","1,2,3,4","3,4,2,1","2,4,3,1"],
+ "answer":0,
+ "explanation":"The logical order follows the steps: Get form → Fill it out → Attach documents → Submit."},
+
+{"id":"v032","track":"professional","subject":"Verbal Ability","category":"Paragraph Organization",
+ "question":"Which sentence does NOT belong in a paragraph about the benefits of reading? (A) Reading improves vocabulary. (B) Physical exercise strengthens muscles. (C) Books expand one's knowledge. (D) Reading enhances critical thinking.",
+ "choices":["Sentence A","Sentence B","Sentence C","Sentence D"],
+ "answer":1,
+ "explanation":"Sentence B is about physical exercise, which is off-topic for a paragraph about benefits of reading."},
+
+# ═══════════════════════════════════════════════════════
+# NUMERICAL ABILITY — BASIC OPERATIONS
+# ═══════════════════════════════════════════════════════
+{"id":"n001","track":"both","subject":"Numerical Ability","category":"Basic Operations",
+ "question":"What is 15% of 240?",
+ "choices":["30","36","38","40"],
+ "answer":1,
+ "explanation":"15% × 240 = 0.15 × 240 = 36"},
+
+{"id":"n002","track":"both","subject":"Numerical Ability","category":"Basic Operations",
+ "question":"If 3/4 of a number is 36, what is the number?",
+ "choices":["27","42","48","54"],
+ "answer":2,
+ "explanation":"Let x be the number. 3/4 × x = 36 → x = 36 ÷ (3/4) = 36 × 4/3 = 48"},
+
+{"id":"n003","track":"both","subject":"Numerical Ability","category":"Basic Operations",
+ "question":"A shirt costs ₱450. If the price is increased by 20%, what is the new price?",
+ "choices":["₱480","₱510","₱520","₱540"],
+ "answer":3,
+ "explanation":"20% of ₱450 = ₱90. New price = ₱450 + ₱90 = ₱540"},
+
+{"id":"n004","track":"both","subject":"Numerical Ability","category":"Basic Operations",
+ "question":"Simplify: (8 × 6) ÷ (4 – 1) + 5",
+ "choices":["16","18","21","24"],
+ "answer":2,
+ "explanation":"Following PEMDAS: (8×6) = 48; (4-1) = 3; 48÷3 = 16; 16+5 = 21"},
+
+{"id":"n005","track":"both","subject":"Numerical Ability","category":"Basic Operations",
+ "question":"What is 2/5 + 3/4?",
+ "choices":["5/9","23/20","1 3/20","Both B and C"],
+ "answer":3,
+ "explanation":"2/5 = 8/20; 3/4 = 15/20; Sum = 23/20 = 1 3/20. Both B and C are the same value."},
+
+{"id":"n006","track":"both","subject":"Numerical Ability","category":"Basic Operations",
+ "question":"A product was sold for ₱1,200, which is 25% more than its cost. What was the cost?",
+ "choices":["₱900","₱940","₱960","₱980"],
+ "answer":2,
+ "explanation":"Cost × 1.25 = 1,200 → Cost = 1,200 ÷ 1.25 = ₱960"},
+
+{"id":"n007","track":"both","subject":"Numerical Ability","category":"Basic Operations",
+ "question":"The ratio of male to female employees is 3:5. If there are 24 male employees, how many females are there?",
+ "choices":["30","35","40","45"],
+ "answer":2,
+ "explanation":"3/5 = 24/x → x = 24 × 5/3 = 40 female employees"},
+
+{"id":"n008","track":"both","subject":"Numerical Ability","category":"Basic Operations",
+ "question":"If 6 workers can finish a job in 8 days, how many days will 4 workers need?",
+ "choices":["10","12","14","16"],
+ "answer":1,
+ "explanation":"Total work = 6 × 8 = 48 worker-days. With 4 workers: 48 ÷ 4 = 12 days."},
+
+{"id":"n009","track":"both","subject":"Numerical Ability","category":"Basic Operations",
+ "question":"A government employee earns ₱28,000 monthly. If 12% is deducted for taxes, what is the take-home pay?",
+ "choices":["₱24,080","₱24,320","₱24,640","₱25,000"],
+ "answer":2,
+ "explanation":"Deduction = 12% × 28,000 = ₱3,360. Take-home = 28,000 – 3,360 = ₱24,640"},
+
+{"id":"n010","track":"both","subject":"Numerical Ability","category":"Basic Operations",
+ "question":"What is the average of 85, 90, 78, 92, and 75?",
+ "choices":["82","84","84.5","86"],
+ "answer":1,
+ "explanation":"Sum = 85+90+78+92+75 = 420. Average = 420÷5 = 84"},
+
+# ═══════════════════════════════════════════════════════
+# NUMERICAL ABILITY — NUMBER SERIES
+# ═══════════════════════════════════════════════════════
+{"id":"n011","track":"both","subject":"Numerical Ability","category":"Number Series",
+ "question":"Find the missing number: 2, 6, 18, 54, ___",
+ "choices":["108","144","162","216"],
+ "answer":2,
+ "explanation":"Each number is multiplied by 3: 2×3=6, 6×3=18, 18×3=54, 54×3=162"},
+
+{"id":"n012","track":"both","subject":"Numerical Ability","category":"Number Series",
+ "question":"What comes next: 5, 11, 17, 23, 29, ___?",
+ "choices":["33","35","37","39"],
+ "answer":1,
+ "explanation":"Each term increases by 6: 5+6=11, 11+6=17... 29+6=35"},
+
+{"id":"n013","track":"both","subject":"Numerical Ability","category":"Number Series",
+ "question":"Complete the series: 1, 4, 9, 16, 25, ___",
+ "choices":["30","34","36","49"],
+ "answer":2,
+ "explanation":"These are perfect squares: 1², 2², 3², 4², 5², 6²=36"},
+
+{"id":"n014","track":"both","subject":"Numerical Ability","category":"Number Series",
+ "question":"Find the next: 100, 90, 81, 73, 66, ___",
+ "choices":["58","59","60","61"],
+ "answer":2,
+ "explanation":"Differences: -10, -9, -8, -7... next difference is -6: 66-6=60"},
+
+{"id":"n015","track":"both","subject":"Numerical Ability","category":"Number Series",
+ "question":"What is next: 3, 7, 15, 31, 63, ___?",
+ "choices":["95","112","127","131"],
+ "answer":2,
+ "explanation":"Each term = previous term × 2 + 1: 3×2+1=7, 7×2+1=15, 63×2+1=127"},
+
+# ═══════════════════════════════════════════════════════
+# NUMERICAL ABILITY — WORD PROBLEMS
+# ═══════════════════════════════════════════════════════
+{"id":"n016","track":"both","subject":"Numerical Ability","category":"Word Problems",
+ "question":"Juan drives 120 km at 60 kph. How long will the trip take?",
+ "choices":["1 hour","1.5 hours","2 hours","2.5 hours"],
+ "answer":2,
+ "explanation":"Time = Distance ÷ Speed = 120 ÷ 60 = 2 hours"},
+
+{"id":"n017","track":"both","subject":"Numerical Ability","category":"Word Problems",
+ "question":"A tank is 2/3 full. After removing 60 liters, it becomes 1/2 full. What is the tank's full capacity?",
+ "choices":["240 liters","300 liters","360 liters","420 liters"],
+ "answer":2,
+ "explanation":"2/3 - 1/2 = 1/6 of tank = 60 liters. Full capacity = 60 × 6 = 360 liters."},
+
+{"id":"n018","track":"both","subject":"Numerical Ability","category":"Word Problems",
+ "question":"Maria bought 3 notebooks at ₱35 each and 2 pens at ₱18 each. How much did she spend in total?",
+ "choices":["₱131","₱139","₱141","₱145"],
+ "answer":2,
+ "explanation":"Notebooks: 3 × ₱35 = ₱105. Pens: 2 × ₱18 = ₱36. Total = ₱105 + ₱36 = ₱141"},
+
+{"id":"n019","track":"both","subject":"Numerical Ability","category":"Word Problems",
+ "question":"A rectangular office measures 8m × 6m. What is its area?",
+ "choices":["42 sq m","46 sq m","48 sq m","52 sq m"],
+ "answer":2,
+ "explanation":"Area = Length × Width = 8 × 6 = 48 sq m"},
+
+{"id":"n020","track":"both","subject":"Numerical Ability","category":"Word Problems",
+ "question":"Pedro can paint a fence in 3 hours. Carlos can do it in 6 hours. How long if they work together?",
+ "choices":["1 hour","1.5 hours","2 hours","2.5 hours"],
+ "answer":2,
+ "explanation":"Combined rate = 1/3 + 1/6 = 2/6 + 1/6 = 3/6 = 1/2 per hour. Time = 1÷(1/2) = 2 hours"},
+
+# ═══════════════════════════════════════════════════════
+# ANALYTICAL ABILITY — LOGIC AND REASONING (Professional)
+# ═══════════════════════════════════════════════════════
+{"id":"a001","track":"professional","subject":"Analytical Ability","category":"Logic",
+ "question":"All government employees must file SALN. Maria is a government employee. Therefore:",
+ "choices":[
+     "Maria need not file SALN",
+     "Maria must file SALN",
+     "Maria may or may not file SALN",
+     "Only senior employees must file SALN"
+ ],
+ "answer":1,
+ "explanation":"This is a valid syllogism: All A are B. Maria is A. Therefore, Maria is B (must file SALN)."},
+
+{"id":"a002","track":"professional","subject":"Analytical Ability","category":"Logic",
+ "question":"If all honest people are trusted, and some government workers are honest, which conclusion is definitely true?",
+ "choices":[
+     "All government workers are trusted",
+     "Some government workers are trusted",
+     "No government worker is trusted",
+     "All trusted people are government workers"
+ ],
+ "answer":1,
+ "explanation":"Since some government workers are honest, and all honest people are trusted, then some government workers are trusted."},
+
+{"id":"a003","track":"professional","subject":"Analytical Ability","category":"Logic",
+ "question":"BIRD is to FLY as FISH is to:",
+ "choices":["Breathe","Swim","Run","Jump"],
+ "answer":1,
+ "explanation":"A bird's primary mode of movement is to fly. A fish's primary mode of movement is to swim."},
+
+{"id":"a004","track":"professional","subject":"Analytical Ability","category":"Logic",
+ "question":"CHAPTER is to BOOK as SCENE is to:",
+ "choices":["Movie","Theater","Director","Script"],
+ "answer":0,
+ "explanation":"A chapter is a part of a book; a scene is a part of a movie. Both represent subdivisions."},
+
+{"id":"a005","track":"professional","subject":"Analytical Ability","category":"Logic",
+ "question":"DOCTOR is to HOSPITAL as TEACHER is to:",
+ "choices":["Student","Classroom","School","Lesson"],
+ "answer":2,
+ "explanation":"A doctor works in a hospital; a teacher works in a school. Both name the professional's primary workplace."},
+
+{"id":"a006","track":"professional","subject":"Analytical Ability","category":"Logic",
+ "question":"Five employees (A,B,C,D,E) are ranked 1st to 5th. B is ranked 3rd. A is ranked higher than B. C is ranked lower than D. E is ranked last. Who is ranked 1st?",
+ "choices":["A","C","D","Cannot be determined"],
+ "answer":3,
+ "explanation":"B=3rd, E=5th, A ranks above B (1st or 2nd). C<D but exact positions unclear without more info."},
+
+{"id":"a007","track":"professional","subject":"Analytical Ability","category":"Data Interpretation",
+ "question":"In a department with 100 employees: 40 passed the CSE, 35 have college degrees, and 20 have both. How many have neither?",
+ "choices":["35","40","45","50"],
+ "answer":2,
+ "explanation":"Using inclusion-exclusion: 40+35-20=55 have at least one. 100-55=45 have neither."},
+
+{"id":"a008","track":"professional","subject":"Analytical Ability","category":"Data Interpretation",
+ "question":"If Employee A gets ₱20,000 and Employee B gets 30% more than A, what is B's salary?",
+ "choices":["₱23,000","₱24,000","₱25,000","₱26,000"],
+ "answer":3,
+ "explanation":"30% of ₱20,000 = ₱6,000. B's salary = ₱20,000 + ₱6,000 = ₱26,000"},
+
+{"id":"a009","track":"professional","subject":"Analytical Ability","category":"Abstract Reasoning",
+ "question":"Which number does NOT belong: 4, 8, 12, 15, 20, 24?",
+ "choices":["8","12","15","20"],
+ "answer":2,
+ "explanation":"All numbers are multiples of 4 (4,8,12,20,24) except 15, which is not divisible by 4."},
+
+{"id":"a010","track":"professional","subject":"Analytical Ability","category":"Abstract Reasoning",
+ "question":"If January = 1, February = 2... what month is represented by 10+2?",
+ "choices":["October","November","December","January"],
+ "answer":2,
+ "explanation":"10+2=12. The 12th month is December."},
+
+# ═══════════════════════════════════════════════════════
+# GENERAL INFORMATION — PHILIPPINE CONSTITUTION
+# ═══════════════════════════════════════════════════════
+{"id":"g001","track":"both","subject":"General Information","category":"Philippine Constitution",
+ "question":"The Philippines is governed by the Constitution ratified in:",
+ "choices":["1973","1986","1987","1992"],
+ "answer":2,
+ "explanation":"The current Philippine Constitution was ratified on February 2, 1987, through a plebiscite."},
+
+{"id":"g002","track":"both","subject":"General Information","category":"Philippine Constitution",
+ "question":"Under the 1987 Philippine Constitution, the President serves a term of:",
+ "choices":["4 years, reeligible once","5 years, not reeligible","6 years, not reeligible","6 years, reeligible once"],
+ "answer":2,
+ "explanation":"Article VII, Section 4: The President shall serve a term of six years without reelection."},
+
+{"id":"g003","track":"both","subject":"General Information","category":"Philippine Constitution",
+ "question":"How many senators are there in the Philippine Senate?",
+ "choices":["12","18","24","36"],
+ "answer":2,
+ "explanation":"Article VI, Section 2: The Senate shall be composed of 24 Senators."},
+
+{"id":"g004","track":"both","subject":"General Information","category":"Philippine Constitution",
+ "question":"The Bill of Rights is found in which Article of the 1987 Constitution?",
+ "choices":["Article II","Article III","Article IV","Article V"],
+ "answer":1,
+ "explanation":"The Bill of Rights is in Article III of the 1987 Philippine Constitution."},
+
+{"id":"g005","track":"both","subject":"General Information","category":"Philippine Constitution",
+ "question":"The minimum age requirement to vote in Philippine elections is:",
+ "choices":["15 years old","18 years old","21 years old","25 years old"],
+ "answer":1,
+ "explanation":"Article V, Section 1: Suffrage may be exercised by all citizens 18 years of age or over."},
+
+{"id":"g006","track":"both","subject":"General Information","category":"Philippine Constitution",
+ "question":"According to the Constitution, what is the state policy on nuclear weapons?",
+ "choices":[
+     "The Philippines may develop them for defense",
+     "The Philippines prohibits nuclear weapons in its territory",
+     "Nuclear weapons are allowed with Senate approval",
+     "No state policy on nuclear weapons"
+ ],
+ "answer":1,
+ "explanation":"Article II, Section 8: The Philippines prohibits nuclear, chemical, and biological weapons."},
+
+{"id":"g007","track":"both","subject":"General Information","category":"Philippine Constitution",
+ "question":"The Supreme Court of the Philippines is composed of how many members?",
+ "choices":["11","12","15","17"],
+ "answer":2,
+ "explanation":"Article VIII, Section 4: The Supreme Court shall be composed of a Chief Justice and 14 Associate Justices (15 total)."},
+
+{"id":"g008","track":"both","subject":"General Information","category":"Philippine Constitution",
+ "question":"The Philippine national territory includes:",
+ "choices":[
+     "The Philippine archipelago only",
+     "The Philippine archipelago and territorial sea",
+     "Archipelago, territorial sea, airspace, and EEZ",
+     "Only the 7,641 islands"
+ ],
+ "answer":2,
+ "explanation":"Article I defines national territory to include the archipelago, internal waters, territorial sea, airspace, seabed, subsoil, insular shelves, and EEZ."},
+
+{"id":"g009","track":"both","subject":"General Information","category":"Philippine Constitution",
+ "question":"The separation of Church and State in the Philippines is mandated by:",
+ "choices":[
+     "Republic Act 386",
+     "Article II, Section 6 of the 1987 Constitution",
+     "Article III, Section 5 of the 1987 Constitution",
+     "The Civil Code"
+ ],
+ "answer":1,
+ "explanation":"Article II, Section 6 states: 'The separation of Church and State shall be inviolable.'"},
+
+{"id":"g010","track":"both","subject":"General Information","category":"Philippine Constitution",
+ "question":"Under the 1987 Constitution, who has the power to declare war?",
+ "choices":[
+     "The President alone",
+     "The Senate alone",
+     "The Congress, by a vote of two-thirds of each House",
+     "The Supreme Court"
+ ],
+ "answer":2,
+ "explanation":"Article VI, Section 23: Congress, by two-thirds vote of both Houses in joint session, can declare war."},
+
+# ═══════════════════════════════════════════════════════
+# GENERAL INFORMATION — RA 6713 (Code of Conduct)
+# ═══════════════════════════════════════════════════════
+{"id":"g011","track":"both","subject":"General Information","category":"RA 6713",
+ "question":"Republic Act 6713 is known as the:",
+ "choices":[
+     "Civil Service Law",
+     "Code of Conduct and Ethical Standards for Public Officials and Employees",
+     "Anti-Graft and Corrupt Practices Act",
+     "Government Service Insurance Act"
+ ],
+ "answer":1,
+ "explanation":"RA 6713 is the 'Code of Conduct and Ethical Standards for Public Officials and Employees,' enacted in 1989."},
+
+{"id":"g012","track":"both","subject":"General Information","category":"RA 6713",
+ "question":"Under RA 6713, public officials must file their SALN (Statement of Assets, Liabilities and Net Worth) every:",
+ "choices":[
+     "Every 3 years",
+     "Every 2 years",
+     "Annually on or before April 30",
+     "Upon assumption of office only"
+ ],
+ "answer":2,
+ "explanation":"Under RA 6713 and CSC rules, SALN must be filed annually on or before April 30 of each year."},
+
+{"id":"g013","track":"both","subject":"General Information","category":"RA 6713",
+ "question":"RA 6713 prohibits public officials from receiving gifts worth more than:",
+ "choices":["₱300","₱500","₱5,000","Any amount is prohibited"],
+ "answer":1,
+ "explanation":"RA 6713 Section 7(d) prohibits receiving gifts of value exceeding ₱500 from any person having dealings with their office."},
+
+{"id":"g014","track":"both","subject":"General Information","category":"RA 6713",
+ "question":"Which of the following is a NORMS OF CONDUCT required under RA 6713?",
+ "choices":[
+     "Professionalism",
+     "Nepotism",
+     "Favoritism",
+     "Conflict of interest"
+ ],
+ "answer":0,
+ "explanation":"RA 6713 Section 4 lists norms of conduct including: commitment to public interest, professionalism, justness, fairness, simplicity, and efficiency."},
+
+{"id":"g015","track":"both","subject":"General Information","category":"RA 6713",
+ "question":"Under RA 6713, a public official who resigns or retires is prohibited from practicing in connection with their former office for how long?",
+ "choices":[
+     "1 year",
+     "2 years",
+     "3 years",
+     "5 years"
+ ],
+ "answer":0,
+ "explanation":"RA 6713 Section 7(b) prohibits former officials from practicing their profession in matters related to their former office for one year after leaving government."},
+
+# ═══════════════════════════════════════════════════════
+# GENERAL INFORMATION — HUMAN RIGHTS
+# ═══════════════════════════════════════════════════════
+{"id":"g016","track":"professional","subject":"General Information","category":"Human Rights",
+ "question":"The Universal Declaration of Human Rights was adopted by the United Nations General Assembly in:",
+ "choices":["1945","1948","1950","1966"],
+ "answer":1,
+ "explanation":"The UDHR was adopted on December 10, 1948 — now celebrated annually as Human Rights Day."},
+
+{"id":"g017","track":"professional","subject":"General Information","category":"Human Rights",
+ "question":"Which fundamental human right is considered the MOST basic?",
+ "choices":[
+     "Right to education",
+     "Right to vote",
+     "Right to life",
+     "Right to property"
+ ],
+ "answer":2,
+ "explanation":"The right to life is considered the most fundamental human right, upon which all other rights depend."},
+
+{"id":"g018","track":"professional","subject":"General Information","category":"Human Rights",
+ "question":"The Commission on Human Rights of the Philippines was established under:",
+ "choices":[
+     "Republic Act 7586",
+     "Article XIII of the 1987 Constitution",
+     "Executive Order 226",
+     "Republic Act 6713"
+ ],
+ "answer":1,
+ "explanation":"Article XIII (Social Justice and Human Rights) of the 1987 Constitution created the Commission on Human Rights."},
+
+# ═══════════════════════════════════════════════════════
+# GENERAL INFORMATION — ENVIRONMENT
+# ═══════════════════════════════════════════════════════
+{"id":"g019","track":"professional","subject":"General Information","category":"Environment",
+ "question":"The Philippine Clean Air Act is:",
+ "choices":["RA 8550","RA 8749","RA 9003","RA 9275"],
+ "answer":1,
+ "explanation":"Republic Act 8749 is the Philippine Clean Air Act of 1999, which promotes clean air and addresses air pollution."},
+
+{"id":"g020","track":"professional","subject":"General Information","category":"Environment",
+ "question":"RA 9003 is known as the:",
+ "choices":[
+     "Clean Water Act",
+     "Ecological Solid Waste Management Act",
+     "Clean Air Act",
+     "Fisheries Code"
+ ],
+ "answer":1,
+ "explanation":"RA 9003 is the Ecological Solid Waste Management Act of 2000, requiring segregation of waste at source."},
+
+{"id":"g021","track":"both","subject":"General Information","category":"Environment",
+ "question":"The 3Rs of environmental management stand for:",
+ "choices":[
+     "Reduce, Reuse, Recycle",
+     "Repair, Recover, Remake",
+     "Remove, Replace, Reuse",
+     "Reduce, Replace, Recover"
+ ],
+ "answer":0,
+ "explanation":"The 3Rs — Reduce, Reuse, Recycle — are the cornerstone principles of solid waste management."},
+
+# ═══════════════════════════════════════════════════════
+# CLERICAL ABILITY (Sub-Professional)
+# ═══════════════════════════════════════════════════════
+{"id":"c001","track":"subprofessional","subject":"Clerical Ability","category":"Filing",
+ "question":"In alphabetical filing, which name comes FIRST?",
+ "choices":["De la Cruz, Jose","De Leon, Maria","Dela Rosa, Pedro","De Lima, Ana"],
+ "answer":0,
+ "explanation":"In filing, 'De la Cruz' comes first. 'la' is the next word alphabetically before 'le' (Leon) or 'li' (Lima)."},
+
+{"id":"c002","track":"subprofessional","subject":"Clerical Ability","category":"Filing",
+ "question":"Files are arranged in reverse chronological order. Which date comes first?",
+ "choices":["January 2024","March 2024","January 2025","March 2025"],
+ "answer":3,
+ "explanation":"Reverse chronological means most recent first. March 2025 is the most recent date."},
+
+{"id":"c003","track":"subprofessional","subject":"Clerical Ability","category":"Filing",
+ "question":"In alphabetical filing, where does 'Mc' fall?",
+ "choices":[
+     "Before 'Ma' names",
+     "After 'Mz' names",
+     "Filed as if spelled 'Mac'",
+     "Filed after all 'M' names"
+ ],
+ "answer":2,
+ "explanation":"Standard filing rules treat 'Mc' as if spelled 'Mac', so McArthur files before MacDonald."},
+
+{"id":"c004","track":"subprofessional","subject":"Clerical Ability","category":"Coding",
+ "question":"If A=1, B=2, C=3... Z=26, what is the code for 'CSE'?",
+ "choices":["3-18-4","3-19-5","4-20-5","3-19-4"],
+ "answer":1,
+ "explanation":"C=3, S=19, E=5. The code is 3-19-5."},
+
+{"id":"c005","track":"subprofessional","subject":"Clerical Ability","category":"Spelling",
+ "question":"Which word is spelled CORRECTLY?",
+ "choices":["Accomodate","Accommodate","Acommodate","Acomodate"],
+ "answer":1,
+ "explanation":"The correct spelling is 'Accommodate' — two C's and two M's."},
+
+{"id":"c006","track":"subprofessional","subject":"Clerical Ability","category":"Spelling",
+ "question":"Which word is spelled INCORRECTLY?",
+ "choices":["Receive","Achieve","Beleive","Believe"],
+ "answer":2,
+ "explanation":"'Beleive' is misspelled. The correct spelling is 'Believe'. Remember: 'i before e except after c'."},
+
+{"id":"c007","track":"subprofessional","subject":"Clerical Ability","category":"Records Management",
+ "question":"Which records are considered PERMANENT and should never be destroyed?",
+ "choices":[
+     "Daily correspondence",
+     "Office supply receipts",
+     "Birth, marriage, and death records",
+     "Meeting memos"
+ ],
+ "answer":2,
+ "explanation":"Vital records such as birth, marriage, and death records are permanent records that must be retained indefinitely."},
+
+{"id":"c008","track":"subprofessional","subject":"Clerical Ability","category":"Office Procedures",
+ "question":"An incoming letter should FIRST be:",
+ "choices":[
+     "Filed immediately",
+     "Stamped with date received and logged",
+     "Forwarded to the department head",
+     "Photocopied for records"
+ ],
+ "answer":1,
+ "explanation":"Standard office procedure requires incoming mail to be date-stamped and logged/registered upon receipt."},
+
 ]
 
+def by_subject(subject):
+    return [q for q in QUESTIONS if q.get("subject") == subject]
 
-def by_subject(subject: str):
-    return [q for q in QUESTIONS if q["subject"] == subject]
+def by_category(category):
+    return [q for q in QUESTIONS if q.get("category") == category]
 
+def by_track(track):
+    return [q for q in QUESTIONS
+            if q.get("track") == track or q.get("track") == "both"]
+
+def get(qid):
+    for q in QUESTIONS:
+        if q["id"] == qid:
+            return q
+    return None
 
 def by_ids(ids):
     id_set = set(ids)
     return [q for q in QUESTIONS if q["id"] in id_set]
 
-
-def get(qid: str):
-    for q in QUESTIONS:
-        if q["id"] == qid:
-            return q
-    return None
+SUBJECTS = list(dict.fromkeys(q["subject"] for q in QUESTIONS))
+CATEGORIES = list(dict.fromkeys(q["category"] for q in QUESTIONS))
