@@ -103,7 +103,7 @@ def build(page: ft.Page, state) -> ft.View:
         )
 
     def go_upgrade(_):
-        page.go("/upgrade")
+        page.go("/home")
 
     def go_achievements(_):
         page.go("/achievements")
