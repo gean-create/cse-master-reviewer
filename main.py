@@ -8,7 +8,7 @@ def build_router(page: ft.Page, state: AppState):
     from screens import (
         splash, onboarding, login, home, topics, lesson,
         flashcards, quiz, exam_config, mock_exam, results,
-        analytics, review, achievements, profile, upgrade
+        analytics, review, achievements, profile
     )
 
     ROUTES = {
@@ -27,7 +27,6 @@ def build_router(page: ft.Page, state: AppState):
         "/review":       review.build,
         "/achievements": achievements.build,
         "/profile":      profile.build,
-        "/upgrade":      upgrade.build,
     }
 
     ROOT_ROUTES = {"/home", "/topics", "/analytics", "/profile",
