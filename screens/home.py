@@ -7,17 +7,8 @@ from theme import (NAVY, BLUE, BLUE_50, BLUE_100, GOLD, GOLD_50,
                    RED, RED_50, ORANGE, ORANGE_50, BORDER,
                    SUBJECTS, PASSING_SCORE)
 import components as comp
-from free_config import CSE_EXAM_DATES
+from free_config import get_upcoming_exams, get_next_exam, days_until_exam
 from data.questions import by_subject
-
-
-def _days_until(date_str):
-    try:
-        exam = dt.date.fromisoformat(date_str)
-        today = dt.date.today()
-        return (exam - today).days
-    except Exception:
-        return None
 
 
 def build(page: ft.Page, state) -> ft.View:
@@ -68,49 +59,74 @@ def build(page: ft.Page, state) -> ft.View:
     )
 
     # ── Exam Countdown ───────────────────────────────────────────
-    next_exam = None
-    for exam in CSE_EXAM_DATES:
-        days = _days_until(exam["date"])
-        if days is not None and days >= 0:
-            next_exam = (exam, days)
-            break
+    upcoming_exams = get_upcoming_exams(3)
+    next_exam = upcoming_exams[0] if upcoming_exams else None
 
     if next_exam:
-        exam_info, days_left = next_exam
-        exam_date = dt.date.fromisoformat(exam_info["date"])
+        days_left = days_until_exam(next_exam)
+        exam_date = dt.date.fromisoformat(next_exam["date"])
         exam_date_str = exam_date.strftime("%B %d, %Y")
 
         if days_left == 0:
-            countdown_label = "📢 EXAM IS TODAY!"
             countdown_color = RED
         elif days_left <= 7:
-            countdown_label = f"⚠️ {days_left} days left!"
             countdown_color = RED
         elif days_left <= 30:
-            countdown_label = f"🔥 {days_left} days remaining"
             countdown_color = ORANGE
         else:
-            countdown_label = f"📅 {days_left} days to go"
             countdown_color = BLUE
 
+        # Mini pills for next 2 exams
+        def exam_pill(exam):
+            d = days_until_exam(exam)
+            ex_date = dt.date.fromisoformat(exam["date"])
+            return ft.Container(
+                content=ft.Column([
+                    ft.Text(ex_date.strftime("%b %d, %Y"),
+                            size=11, weight=ft.FontWeight.W_700,
+                            color=WHITE),
+                    ft.Text(f"{d} days", size=10,
+                            color=WHITE + "BB"),
+                ], spacing=1,
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER),
+                bgcolor=WHITE + "18",
+                border_radius=ft.BorderRadius.all(8),
+                padding=ft.Padding.symmetric(horizontal=10, vertical=6),
+            )
+
+        future_pills = ft.Row(
+            [exam_pill(e) for e in upcoming_exams[1:3]],
+            spacing=8,
+        ) if len(upcoming_exams) > 1 else ft.Container()
+
         countdown_card = ft.Container(
-            content=ft.Row([
-                ft.Column([
-                    ft.Text("Next CSE Exam", size=11,
-                            color=WHITE + "BB"),
-                    ft.Text(exam_date_str, size=16,
-                            weight=ft.FontWeight.W_800, color=WHITE),
-                    ft.Text(exam_info["label"], size=11,
-                            color=WHITE + "BB"),
-                ], spacing=2, expand=True),
-                ft.Column([
-                    ft.Text(str(days_left), size=36,
-                            weight=ft.FontWeight.W_900,
-                            color=WHITE, font_family="Georgia"),
-                    ft.Text("days", size=11, color=WHITE + "BB"),
-                ], horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                spacing=0),
-            ], vertical_alignment=ft.CrossAxisAlignment.CENTER),
+            content=ft.Column([
+                ft.Row([
+                    ft.Column([
+                        ft.Text("📅 Next CSE Exam", size=11,
+                                color=WHITE + "BB"),
+                        ft.Text(exam_date_str, size=17,
+                                weight=ft.FontWeight.W_800,
+                                color=WHITE),
+                        ft.Text(next_exam["label"], size=11,
+                                color=WHITE + "BB"),
+                    ], spacing=2, expand=True),
+                    ft.Column([
+                        ft.Text(str(days_left), size=36,
+                                weight=ft.FontWeight.W_900,
+                                color=WHITE),
+                        ft.Text("days left", size=10,
+                                color=WHITE + "BB"),
+                    ], horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                    spacing=0),
+                ], vertical_alignment=ft.CrossAxisAlignment.CENTER),
+                ft.Container(height=10),
+                ft.Row([
+                    ft.Text("Upcoming:", size=10, color=WHITE + "88"),
+                    future_pills,
+                ], spacing=8,
+                vertical_alignment=ft.CrossAxisAlignment.CENTER),
+            ]),
             gradient=ft.LinearGradient(
                 begin=ft.Alignment(-1, -1), end=ft.Alignment(1, 1),
                 colors=[countdown_color, countdown_color + "CC"],
