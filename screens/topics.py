@@ -69,7 +69,7 @@ def build(page: ft.Page, state) -> ft.View:
                         ft.Row(row_items, spacing=16),
                     ],
                 ),
-                shadow=True,
+                shadow_on=True,
             ),
             on_tap=go,
         )
