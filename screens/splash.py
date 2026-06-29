@@ -43,7 +43,6 @@ def build(page: ft.Page, state) -> ft.View:
                     size=20, weight=ft.FontWeight.W_700,
                     color=GOLD,
                     text_align=ft.TextAlign.CENTER,
-                    letter_spacing=6,
                 ),
                 ft.Container(height=4),
                 ft.Row(
