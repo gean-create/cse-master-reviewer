@@ -3,7 +3,8 @@ import flet as ft
 import asyncio
 import random
 from theme import (BLUE, BLUE_50, WHITE, DARK, GRAY, GREEN, GREEN_50,
-                   RED, RED_50, ORANGE, APP_BG, BORDER, FONT_DISPLAY, SUBJECTS)
+                   RED, RED_50, ORANGE, APP_BG, BORDER, FONT_DISPLAY,
+                   SUBJECTS, NAVY)
 import components as comp
 from data.questions import by_subject, get as get_q
 
@@ -36,6 +37,7 @@ def build(page: ft.Page, state) -> ft.View:
     idx = [0]
     time_left = [duration_sec]
     exam_done = [False]
+    is_paused = [False]
     # BUG FIX #3: store task reference so we can cancel it on navigate-away
     _tick_task = [None]
 
@@ -51,6 +53,8 @@ def build(page: ft.Page, state) -> ft.View:
             await asyncio.sleep(1)
             if exam_done[0]:
                 break
+            if is_paused[0]:
+                continue  # frozen — don't decrement time while paused
             time_left[0] -= 1
             h, rem = divmod(time_left[0], 3600)
             m, s = divmod(rem, 60)
@@ -185,6 +189,49 @@ def build(page: ft.Page, state) -> ft.View:
         }
         page.go("/results")
 
+    pause_overlay = ft.Container(visible=False)
+
+    def _build_pause_overlay():
+        h, rem = divmod(time_left[0], 3600)
+        m, s = divmod(rem, 60)
+        time_str = f"{h:02d}:{m:02d}:{s:02d}" if h else f"{m:02d}:{s:02d}"
+        return ft.Container(
+            content=ft.Column([
+                ft.Icon(ft.Icons.PAUSE_CIRCLE_ROUNDED, color=WHITE, size=56),
+                ft.Container(height=12),
+                ft.Text("Exam Paused", size=20,
+                        weight=ft.FontWeight.W_800, color=WHITE),
+                ft.Text(f"Time remaining: {time_str}",
+                        size=13, color=WHITE + "CC"),
+                ft.Container(height=20),
+                ft.ElevatedButton(
+                    content=ft.Row([
+                        ft.Icon(ft.Icons.PLAY_ARROW_ROUNDED, color=BLUE, size=18),
+                        ft.Text("Resume Exam", size=14,
+                                weight=ft.FontWeight.W_700, color=BLUE),
+                    ], spacing=6),
+                    bgcolor=WHITE,
+                    on_click=_on_resume,
+                ),
+            ], horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+            alignment=ft.MainAxisAlignment.CENTER),
+            bgcolor=NAVY,
+            opacity=0.95,
+            alignment=ft.Alignment(0, 0),
+            expand=True,
+        )
+
+    def _on_pause(_):
+        is_paused[0] = True
+        pause_overlay.content = _build_pause_overlay()
+        pause_overlay.visible = True
+        page.update()
+
+    def _on_resume(_):
+        is_paused[0] = False
+        pause_overlay.visible = False
+        page.update()
+
     def on_submit(_):
         answered = len(answers)
         unanswered = total - answered
@@ -230,6 +277,8 @@ def build(page: ft.Page, state) -> ft.View:
     nav_row = ft.Row([
         ft.IconButton(icon=ft.Icons.CHEVRON_LEFT_ROUNDED, icon_color=BLUE, on_click=_on_prev),
         progress_text,
+        ft.IconButton(icon=ft.Icons.PAUSE_ROUNDED, icon_color=GRAY, on_click=_on_pause,
+                      tooltip="Pause exam"),
         ft.IconButton(icon=ft.Icons.FLAG_ROUNDED, icon_color=ORANGE, on_click=_on_flag,
                       tooltip="Flag for review"),
         ft.IconButton(icon=ft.Icons.CHEVRON_RIGHT_ROUNDED, icon_color=BLUE, on_click=_on_next),
@@ -268,5 +317,7 @@ def build(page: ft.Page, state) -> ft.View:
         expand=True,
     )
 
-    return ft.View(route="/mock_exam", controls=[view_body],
-                   padding=0, bgcolor=APP_BG)
+    return ft.View(
+        route="/mock_exam",
+        controls=[ft.Stack([view_body, pause_overlay], expand=True)],
+        padding=0, bgcolor=APP_BG)
