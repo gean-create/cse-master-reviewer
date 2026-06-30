@@ -84,5 +84,13 @@ async def main(page: ft.Page):
 
 
 import os
-port = int(os.environ.get("PORT", 8080))
-ft.run(main, view=ft.AppView.WEB_BROWSER, port=port, host="0.0.0.0")
+
+if os.environ.get("PORT"):
+    # Running on a cloud web host (e.g. Render) — serve as a web app
+    port = int(os.environ["PORT"])
+    ft.run(main, view=ft.AppView.WEB_BROWSER, port=port, host="0.0.0.0")
+else:
+    # Running natively (Android/iOS APK, desktop, or local dev) —
+    # let Flet auto-detect the platform. Forcing WEB_BROWSER here is
+    # what caused the black screen on real Android devices.
+    ft.run(main)
