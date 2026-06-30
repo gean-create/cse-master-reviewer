@@ -11,7 +11,7 @@ SLIDES = [
         "color": BLUE,
         "title": "Study Smarter",
         "body": ("Master all four CSE subjects with structured lessons, "
-                 "flashcards, and timed practice quizzes."),
+                 "a Brainbox-style reviewer book, and timed practice quizzes."),
     },
     {
         "icon": ft.Icons.TRENDING_UP_ROUNDED,
