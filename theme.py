@@ -1,43 +1,45 @@
 """
-CSE Master Reviewer 2026 — Design System
-Professional, clean, exam-focused UI.
+Civil Service Reviewer 2026 — Design System v2
+Elegant Indigo/Navy + Gold palette, per brand reference.
 """
 import flet as ft
 
-# ── Brand Colors ────────────────────────────────────────────────────
-NAVY       = "#0D1B4B"   # Primary dark navy
-BLUE       = "#0038A8"   # Philippine flag blue
-BLUE_700   = "#002777"   # Darker blue
-BLUE_50    = "#EAF0FB"   # Light blue tint
-BLUE_100   = "#C8D9F5"   # Slightly deeper blue tint
-GOLD       = "#C9A04D"   # Philippine gold
-GOLD_LIGHT = "#F0D080"   # Light gold
-GOLD_50    = "#FEF9EC"   # Gold tint background
+# ── Brand Colors (new palette) ───────────────────────────────────────
+NAVY       = "#0F172A"   # Navy Blue — primary dark
+INDIGO     = "#1E3A8A"   # Indigo Blue — primary
+BLUE       = "#1E3A8A"   # alias used across screens
+BLUE_700   = "#0F172A"
+BLUE_50    = "#EEF2FB"
+BLUE_100   = "#D8E1F5"
+
+GOLD       = "#D4AF37"   # Elegant Gold
+GOLD_MUTED = "#C9A227"   # Muted Gold
+GOLD_LIGHT = "#E6C766"
+GOLD_50    = "#FBF6E6"
 
 WHITE      = "#FFFFFF"
-OFF_WHITE  = "#F8F9FD"
+OFF_WHITE  = "#F8FAFC"
 SURFACE    = "#FFFFFF"
-APP_BG     = "#F0F4FF"
+APP_BG     = "#F8FAFC"   # Light Gray background
 
-DARK       = "#0D1B4B"   # Main text = navy
-DARK_2     = "#1E2D5A"   # Secondary dark
-GRAY       = "#5A6B8A"   # Body text
-GRAY_SOFT  = "#8FA0BD"   # Placeholder / hint
-BORDER     = "#DCE3F0"   # Borders
+DARK       = "#0F172A"   # Dark Navy text
+DARK_2     = "#1E293B"
+GRAY       = "#334155"   # Slate
+GRAY_SOFT  = "#64748B"   # Gray
+BORDER     = "#E2E8F0"
 
-GREEN      = "#16A34A"
+GREEN      = "#15803D"
 GREEN_50   = "#DCFCE7"
 GREEN_100  = "#BBF7D0"
 RED        = "#DC2626"
 RED_50     = "#FEE2E2"
-ORANGE     = "#D97706"
-ORANGE_50  = "#FEF3C7"
+ORANGE     = "#C9A227"   # use muted gold for warning tone (avoids bright yellow)
+ORANGE_50  = "#FBF6E6"
 
 # ── Typography ──────────────────────────────────────────────────────
 FONT_DISPLAY = "Georgia"
 FONT_BODY    = "Arial"
-
-FONT_URLS = {}   # Using system fonts — no CDN needed
+FONT_URLS = {}
 
 # ── Subjects ────────────────────────────────────────────────────────
 SUBJECTS = ["Verbal Ability", "Numerical Ability",
@@ -48,13 +50,15 @@ SUBJECT_ICONS = {
     "Numerical Ability":  ft.Icons.CALCULATE_ROUNDED,
     "Analytical Ability": ft.Icons.PSYCHOLOGY_ROUNDED,
     "General Information":ft.Icons.PUBLIC_ROUNDED,
+    "Clerical Ability":   ft.Icons.FOLDER_ROUNDED,
 }
 
 SUBJECT_COLORS = {
-    "Verbal Ability":     BLUE,
+    "Verbal Ability":     INDIGO,
     "Numerical Ability":  "#7C3AED",
-    "Analytical Ability": "#0891B2",
+    "Analytical Ability": "#0E7490",
     "General Information":GREEN,
+    "Clerical Ability":   GOLD_MUTED,
 }
 
 # ── CSE Exam Config ─────────────────────────────────────────────────
