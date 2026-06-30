@@ -1,6 +1,7 @@
 """Home Dashboard — Professional, free, with exam countdown."""
 import flet as ft
 import datetime as dt
+import asyncio
 import random
 from theme import (NAVY, BLUE, BLUE_50, BLUE_100, GOLD, GOLD_50,
                    WHITE, APP_BG, GRAY, GRAY_SOFT, GREEN, GREEN_50,
@@ -58,74 +59,109 @@ def build(page: ft.Page, state) -> ft.View:
             bottom_left=28, bottom_right=28),
     )
 
-    # ── Exam Countdown ───────────────────────────────────────────
+    # ── Exam Countdown (live H:M:S) ───────────────────────────────
     upcoming_exams = get_upcoming_exams(3)
     next_exam = upcoming_exams[0] if upcoming_exams else None
 
+    countdown_days_txt = ft.Text("0", size=28, weight=ft.FontWeight.W_900, color=WHITE)
+    countdown_hrs_txt = ft.Text("00", size=20, weight=ft.FontWeight.W_800, color=WHITE)
+    countdown_min_txt = ft.Text("00", size=20, weight=ft.FontWeight.W_800, color=WHITE)
+    countdown_sec_txt = ft.Text("00", size=20, weight=ft.FontWeight.W_800, color=WHITE)
+
     if next_exam:
-        days_left = days_until_exam(next_exam)
+        exam_dt = dt.datetime.combine(
+            dt.date.fromisoformat(next_exam["date"]),
+            dt.time(8, 0)  # 8:00 AM test proper start
+        )
+
+        async def _tick_countdown():
+            while True:
+                remaining = exam_dt - dt.datetime.now()
+                if remaining.total_seconds() <= 0:
+                    countdown_days_txt.value = "0"
+                    countdown_hrs_txt.value = "00"
+                    countdown_min_txt.value = "00"
+                    countdown_sec_txt.value = "00"
+                    try:
+                        page.update()
+                    except Exception:
+                        pass
+                    break
+                total_sec = int(remaining.total_seconds())
+                days, rem = divmod(total_sec, 86400)
+                hours, rem = divmod(rem, 3600)
+                minutes, seconds = divmod(rem, 60)
+                countdown_days_txt.value = str(days)
+                countdown_hrs_txt.value = f"{hours:02d}"
+                countdown_min_txt.value = f"{minutes:02d}"
+                countdown_sec_txt.value = f"{seconds:02d}"
+                try:
+                    page.update()
+                except Exception:
+                    break
+                await asyncio.sleep(1)
+
+        page.run_task(_tick_countdown)
+
         exam_date = dt.date.fromisoformat(next_exam["date"])
         exam_date_str = exam_date.strftime("%B %d, %Y")
+        days_left = days_until_exam(next_exam)
 
-        if days_left == 0:
-            countdown_color = RED
-        elif days_left <= 7:
-            countdown_color = RED
-        elif days_left <= 30:
-            countdown_color = ORANGE
-        else:
-            countdown_color = BLUE
+        countdown_color = (RED if days_left <= 7 else
+                           ORANGE if days_left <= 30 else BLUE)
 
-        # Mini pills for next 2 exams
-        def exam_pill(exam):
-            d = days_until_exam(exam)
-            ex_date = dt.date.fromisoformat(exam["date"])
+        def time_box(value_ctrl, label):
             return ft.Container(
                 content=ft.Column([
-                    ft.Text(ex_date.strftime("%b %d, %Y"),
-                            size=11, weight=ft.FontWeight.W_700,
-                            color=WHITE),
-                    ft.Text(f"{d} days", size=10,
-                            color=WHITE + "BB"),
-                ], spacing=1,
-                horizontal_alignment=ft.CrossAxisAlignment.CENTER),
+                    value_ctrl,
+                    ft.Text(label, size=9, color=WHITE + "AA"),
+                ], horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                spacing=0),
                 bgcolor=WHITE + "18",
-                border_radius=ft.BorderRadius.all(8),
-                padding=ft.Padding.symmetric(horizontal=10, vertical=6),
+                border_radius=ft.BorderRadius.all(10),
+                padding=ft.Padding.symmetric(horizontal=10, vertical=8),
+                width=58,
             )
 
-        future_pills = ft.Row(
-            [exam_pill(e) for e in upcoming_exams[1:3]],
-            spacing=8,
-        ) if len(upcoming_exams) > 1 else ft.Container()
+        def go_schedule(_):
+            page.go("/schedule")
 
         countdown_card = ft.Container(
             content=ft.Column([
                 ft.Row([
-                    ft.Column([
-                        ft.Text("📅 Next CSE Exam", size=11,
-                                color=WHITE + "BB"),
-                        ft.Text(exam_date_str, size=17,
-                                weight=ft.FontWeight.W_800,
-                                color=WHITE),
-                        ft.Text(next_exam["label"], size=11,
-                                color=WHITE + "BB"),
-                    ], spacing=2, expand=True),
-                    ft.Column([
-                        ft.Text(str(days_left), size=36,
-                                weight=ft.FontWeight.W_900,
-                                color=WHITE),
-                        ft.Text("days left", size=10,
-                                color=WHITE + "BB"),
-                    ], horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                    spacing=0),
-                ], vertical_alignment=ft.CrossAxisAlignment.CENTER),
-                ft.Container(height=10),
+                    ft.Icon(ft.Icons.EVENT_AVAILABLE_ROUNDED,
+                            color=WHITE, size=16),
+                    ft.Text("Upcoming Civil Service Examination",
+                            size=12, color=WHITE + "CC",
+                            weight=ft.FontWeight.W_600),
+                ], spacing=6),
+                ft.Container(height=4),
+                ft.Text(exam_date_str, size=18,
+                        weight=ft.FontWeight.W_800, color=WHITE),
+                ft.Text(next_exam["label"] + " — " + next_exam["description"],
+                        size=11, color=WHITE + "BB"),
+                ft.Container(height=12),
                 ft.Row([
-                    ft.Text("Upcoming:", size=10, color=WHITE + "88"),
-                    future_pills,
-                ], spacing=8,
-                vertical_alignment=ft.CrossAxisAlignment.CENTER),
+                    time_box(countdown_days_txt, "DAYS"),
+                    time_box(countdown_hrs_txt, "HOURS"),
+                    time_box(countdown_min_txt, "MINS"),
+                    time_box(countdown_sec_txt, "SECS"),
+                ], spacing=8),
+                ft.Container(height=12),
+                ft.GestureDetector(
+                    content=ft.Container(
+                        content=ft.Row([
+                            ft.Text("View Complete Schedule", size=12,
+                                    weight=ft.FontWeight.W_700, color=WHITE),
+                            ft.Icon(ft.Icons.ARROW_FORWARD_ROUNDED,
+                                    color=WHITE, size=14),
+                        ], alignment=ft.MainAxisAlignment.CENTER, spacing=6),
+                        bgcolor=WHITE + "20",
+                        border_radius=ft.BorderRadius.all(10),
+                        padding=ft.Padding.symmetric(horizontal=14, vertical=10),
+                    ),
+                    on_tap=go_schedule,
+                ),
             ]),
             gradient=ft.LinearGradient(
                 begin=ft.Alignment(-1, -1), end=ft.Alignment(1, 1),
