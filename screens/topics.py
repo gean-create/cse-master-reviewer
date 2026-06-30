@@ -6,6 +6,10 @@ import components as comp
 
 
 def build(page: ft.Page, state) -> ft.View:
+    track = state.track
+    display_subjects = list(SUBJECTS)
+    if track == "Sub-Professional" and "Clerical Ability" not in display_subjects:
+        display_subjects.append("Clerical Ability")
 
     def subject_card(subj):
         pct = state.subject_mastery_pct(subj)
@@ -81,7 +85,7 @@ def build(page: ft.Page, state) -> ft.View:
         ft.Text("Tap a subject to start learning.", size=13, color=GRAY),
         ft.Container(height=16),
         *[ft.Column([subject_card(s), ft.Container(height=10)])
-          for s in SUBJECTS],
+          for s in display_subjects],
         ft.Container(height=8),
     ]
 
