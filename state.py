@@ -132,6 +132,10 @@ class AppState:
 
     # ---------------------------------------------------------- subjects
     def subject_state(self, subject):
+        self.data["subjects"].setdefault(
+            subject, {"lesson_done": False,
+                     "flashcards_mastered": [], "flashcards_learning": []}
+        )
         return self.data["subjects"][subject]
 
     def mark_lesson_done(self, subject):
