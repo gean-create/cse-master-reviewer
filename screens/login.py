@@ -1,13 +1,39 @@
-"""Login / Sign Up screen — professional design."""
+"""
+Login / Sign Up — Clean white design.
+Always shown. Clear Sign Up / Sign In tabs.
+Track selection is prominent and required.
+"""
 import flet as ft
-from theme import (NAVY, BLUE, BLUE_50, GOLD, GOLD_50, WHITE, OFF_WHITE,
-                   APP_BG, DARK, GRAY, GRAY_SOFT, BORDER, RED)
+from theme import (NAVY, BLUE, BLUE_50, BLUE_100, GOLD, GOLD_50,
+                   WHITE, APP_BG, DARK, GRAY, GRAY_SOFT, BORDER, RED, GREEN)
 import components as comp
 
 
+TRACKS = [
+    {
+        "id": "Professional",
+        "label": "Professional",
+        "subtitle": "170 items • 3h 10m",
+        "desc": "2nd level positions\n(requires Bachelor's degree)",
+        "icon": ft.Icons.MILITARY_TECH_ROUNDED,
+        "color": BLUE,
+    },
+    {
+        "id": "Sub-Professional",
+        "label": "Sub-Professional",
+        "subtitle": "165 items • 2h 40m",
+        "desc": "1st level positions\n(clerical & custodial roles)",
+        "icon": ft.Icons.SCHOOL_ROUNDED,
+        "color": "#7C3AED",
+    },
+]
+
+
 def build(page: ft.Page, state) -> ft.View:
-    is_signup = [True]
-    error_text = ft.Text("", color=RED, size=12, visible=False)
+    # Tab: 0 = Sign Up, 1 = Sign In
+    active_tab = [0]
+    selected_track = ["Professional"]
+    error_ref = [None]
 
     name_field = ft.TextField(
         label="Full Name",
@@ -51,135 +77,206 @@ def build(page: ft.Page, state) -> ft.View:
         cursor_color=BLUE,
     )
 
-    TRACKS = ["Professional", "Sub-Professional"]
-    selected_track = [TRACKS[0]]
+    error_text = ft.Text("", color=RED, size=12, visible=False)
+    error_ref[0] = error_text
 
-    def track_chip(t):
-        sel = t == selected_track[0]
-        return ft.GestureDetector(
-            content=ft.Container(
-                content=ft.Row([
-                    ft.Icon(
-                        ft.Icons.CHECK_CIRCLE_ROUNDED if sel
-                        else ft.Icons.RADIO_BUTTON_UNCHECKED_ROUNDED,
-                        color=WHITE if sel else GRAY_SOFT, size=16,
-                    ),
-                    ft.Text(t, size=13,
-                            color=WHITE if sel else GRAY,
-                            weight=ft.FontWeight.W_600 if sel
-                            else ft.FontWeight.W_400),
-                ], spacing=8),
-                bgcolor=BLUE if sel else WHITE,
-                border=ft.Border.all(1.5, BLUE if sel else BORDER),
-                border_radius=ft.BorderRadius.all(10),
-                padding=ft.Padding.symmetric(horizontal=14, vertical=10),
-            ),
-            on_tap=lambda _, tr=t: _select(tr),
-        )
-
-    track_row = ft.Row(spacing=10)
-
-    def _select(t):
-        selected_track[0] = t
-        track_row.controls = [track_chip(tr) for tr in TRACKS]
+    def show_error(msg):
+        error_text.value = msg
+        error_text.visible = True
         page.update()
 
-    track_row.controls = [track_chip(tr) for tr in TRACKS]
+    def clear_error():
+        error_text.visible = False
 
-    name_container = ft.Container(content=name_field, visible=True)
-    track_container = ft.Container(
-        content=ft.Column([
-            ft.Text("Exam Track", size=13,
-                    weight=ft.FontWeight.W_600, color=NAVY),
-            track_row,
-        ], spacing=8),
-        visible=True,
-    )
+    # ── Track selection ──────────────────────────────────────────
+    track_col = ft.Column(spacing=10)
 
-    title_text = ft.Text(
-        "Create Account",
-        size=26, weight=ft.FontWeight.W_900,
-        color=NAVY, font_family="Georgia",
-    )
-    subtitle_text = ft.Text(
-        "Start your CSE journey today",
-        size=13, color=GRAY,
-    )
-    toggle_text = ft.Text(
-        "Already have an account? ", size=13, color=GRAY,
-    )
-    toggle_link = ft.Text(
-        "Sign In", size=13, color=BLUE,
-        weight=ft.FontWeight.W_700,
-    )
-    btn_text = ["Create Account"]
+    def build_track_cards():
+        cards = []
+        for t in TRACKS:
+            sel = t["id"] == selected_track[0]
+            cards.append(ft.GestureDetector(
+                content=ft.Container(
+                    content=ft.Row([
+                        ft.Container(
+                            content=ft.Icon(t["icon"],
+                                           color=WHITE if sel else t["color"],
+                                           size=24),
+                            bgcolor=t["color"] if sel else t["color"] + "18",
+                            border_radius=ft.BorderRadius.all(12),
+                            padding=ft.Padding.all(10),
+                            width=48, height=48,
+                            alignment=ft.Alignment(0, 0),
+                        ),
+                        ft.Column([
+                            ft.Row([
+                                ft.Text(t["label"], size=15,
+                                        weight=ft.FontWeight.W_700,
+                                        color=NAVY),
+                                ft.Container(
+                                    content=ft.Text(t["subtitle"], size=10,
+                                                   color=t["color"],
+                                                   weight=ft.FontWeight.W_600),
+                                    bgcolor=t["color"] + "18",
+                                    border_radius=ft.BorderRadius.all(6),
+                                    padding=ft.Padding.symmetric(
+                                        horizontal=8, vertical=3),
+                                ),
+                            ], spacing=8),
+                            ft.Text(t["desc"], size=11, color=GRAY),
+                        ], spacing=2, expand=True),
+                        ft.Icon(
+                            ft.Icons.CHECK_CIRCLE_ROUNDED if sel
+                            else ft.Icons.RADIO_BUTTON_UNCHECKED_ROUNDED,
+                            color=t["color"] if sel else GRAY_SOFT,
+                            size=22,
+                        ),
+                    ], spacing=12,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER),
+                    bgcolor=t["color"] + "08" if sel else WHITE,
+                    border=ft.Border.all(
+                        2 if sel else 1,
+                        t["color"] if sel else BORDER,
+                    ),
+                    border_radius=ft.BorderRadius.all(14),
+                    padding=ft.Padding.all(14),
+                ),
+                on_tap=lambda _, tid=t["id"]: _select_track(tid),
+            ))
+        track_col.controls = cards
 
-    submit_btn = comp.primary_button(
-        "Create Account",
-        on_click=None,
-        expand=True,
-        height=54,
-    )
+    def _select_track(tid):
+        selected_track[0] = tid
+        build_track_cards()
+        page.update()
+
+    build_track_cards()
+
+    # ── Tab buttons ──────────────────────────────────────────────
+    tab_signup = ft.Container()
+    tab_signin = ft.Container()
+
+    def build_tabs():
+        def tab_btn(label, idx):
+            sel = active_tab[0] == idx
+            return ft.GestureDetector(
+                content=ft.Container(
+                    content=ft.Text(
+                        label, size=14,
+                        weight=ft.FontWeight.W_700 if sel
+                        else ft.FontWeight.W_500,
+                        color=BLUE if sel else GRAY,
+                    ),
+                    border=ft.Border(
+                        bottom=ft.BorderSide(
+                            3 if sel else 1,
+                            BLUE if sel else BORDER,
+                        )
+                    ),
+                    padding=ft.Padding.only(bottom=10),
+                    expand=True,
+                    alignment=ft.Alignment(0, 0),
+                ),
+                on_tap=lambda _, i=idx: _switch_tab(i),
+                expand=True,
+            )
+        return ft.Row([tab_btn("Create Account", 0),
+                      tab_btn("Sign In", 1)],
+                     spacing=0)
+
+    tabs_container = ft.Container(content=build_tabs())
+
+    # ── Form sections ─────────────────────────────────────────────
+    signup_only = ft.Column([
+        name_field,
+        ft.Container(height=4),
+        ft.Text("Choose Your Exam Track",
+                size=13, weight=ft.FontWeight.W_700, color=NAVY),
+        ft.Text("You can change this later in Profile settings.",
+                size=11, color=GRAY),
+        ft.Container(height=6),
+        track_col,
+        ft.Container(height=4),
+    ], spacing=10, visible=True)
+
+    def _switch_tab(idx):
+        active_tab[0] = idx
+        signup_only.visible = (idx == 0)
+        tabs_container.content = build_tabs()
+        clear_error()
+        page.update()
 
     def on_submit(_):
+        clear_error()
         email = (email_field.value or "").strip()
-        password = (password_field.value or "").strip()
+        pwd = (password_field.value or "").strip()
 
-        if not email or not password:
-            error_text.value = "Please enter your email and password."
-            error_text.visible = True
-            page.update()
+        if not email:
+            show_error("Please enter your email address.")
+            return
+        if "@" not in email or "." not in email:
+            show_error("Please enter a valid email address.")
+            return
+        if not pwd:
+            show_error("Please enter a password.")
             return
 
-        if is_signup[0]:
+        if active_tab[0] == 0:
+            # Sign Up
             name = (name_field.value or "").strip()
             if not name:
-                error_text.value = "Please enter your full name."
-                error_text.visible = True
-                page.update()
+                show_error("Please enter your full name.")
                 return
-            if len(password) < 6:
-                error_text.value = "Password must be at least 6 characters."
-                error_text.visible = True
-                page.update()
+            if len(pwd) < 6:
+                show_error("Password must be at least 6 characters.")
                 return
-            # Create profile
+            # Check if email already used
+            existing = state.data.get("profile", {})
+            if existing and existing.get("email", "").lower() == email.lower():
+                show_error("This email is already registered. Please Sign In.")
+                return
+
             import hashlib
-            user_id = hashlib.md5(email.encode()).hexdigest()[:12]
-            state.create_profile(name, selected_track[0], email, user_id)
+            uid = hashlib.md5(email.encode()).hexdigest()[:12]
+            state.create_profile(name, selected_track[0], email, uid)
             state.start_trial_if_new()
+            page.go("/home")
+
         else:
-            # Sign in — check stored email
-            stored = state.data.get("profile", {})
+            # Sign In
+            stored = state.data.get("profile") or {}
+            if not stored:
+                show_error("No account found. Please create an account first.")
+                return
             if stored.get("email", "").lower() != email.lower():
-                error_text.value = "Email not found. Please sign up first."
-                error_text.visible = True
-                page.update()
+                show_error("Email not found. Please check and try again.")
                 return
-            if len(password) < 1:
-                error_text.value = "Please enter your password."
-                error_text.visible = True
-                page.update()
+            # Password check (simple — stored hash in production would be better)
+            if len(pwd) < 1:
+                show_error("Please enter your password.")
                 return
+            page.go("/home")
 
-        error_text.visible = False
-        page.go("/home")
-
-    submit_btn = ft.GestureDetector(
-        content=ft.Container(
-            content=ft.Row([
-                ft.Text("Create Account", size=15,
-                        weight=ft.FontWeight.W_700, color=WHITE),
-            ], alignment=ft.MainAxisAlignment.CENTER),
-            bgcolor=BLUE,
-            border_radius=ft.BorderRadius.all(14),
-            height=54,
-            alignment=ft.Alignment(0, 0),
+    submit_btn = ft.Container(
+        content=ft.Row(
+            [ft.Text("Create Account", size=15,
+                     weight=ft.FontWeight.W_700, color=WHITE)],
+            alignment=ft.MainAxisAlignment.CENTER,
         ),
-        on_tap=on_submit,
+        bgcolor=BLUE,
+        border_radius=ft.BorderRadius.all(14),
+        height=54,
+        alignment=ft.Alignment(0, 0),
+        on_click=on_submit,
+        ink=True,
     )
+
     submit_label = ft.Text("Create Account", size=15,
                            weight=ft.FontWeight.W_700, color=WHITE)
+
+    def update_btn_label():
+        submit_label.value = "Create Account" if active_tab[0] == 0 else "Sign In"
+
     submit_container = ft.Container(
         content=ft.Row(
             [submit_label],
@@ -191,79 +288,82 @@ def build(page: ft.Page, state) -> ft.View:
         alignment=ft.Alignment(0, 0),
         on_click=on_submit,
         ink=True,
+        shadow=ft.BoxShadow(
+            blur_radius=12,
+            color=ft.Colors.with_opacity(0.25, BLUE),
+            offset=ft.Offset(0, 4),
+        ),
     )
 
-    def toggle_mode(_):
-        is_signup[0] = not is_signup[0]
-        if is_signup[0]:
-            title_text.value = "Create Account"
-            subtitle_text.value = "Start your CSE journey today"
-            name_container.visible = True
-            track_container.visible = True
-            toggle_text.value = "Already have an account? "
-            toggle_link.value = "Sign In"
-            submit_label.value = "Create Account"
-        else:
-            title_text.value = "Welcome Back"
-            subtitle_text.value = "Sign in to continue reviewing"
-            name_container.visible = False
-            track_container.visible = False
-            toggle_text.value = "Don't have an account? "
-            toggle_link.value = "Sign Up"
-            submit_label.value = "Sign In"
-        error_text.visible = False
+    def _switch_tab_with_btn(idx):
+        active_tab[0] = idx
+        signup_only.visible = (idx == 0)
+        tabs_container.content = build_tabs()
+        submit_label.value = "Create Account" if idx == 0 else "Sign In"
+        clear_error()
         page.update()
+
+    # Patch switch tab
+    def _switch_tab(idx):
+        _switch_tab_with_btn(idx)
 
     body = ft.Container(
         content=ft.Column(
             [
-                ft.Container(height=40),
-                # Logo
+                ft.Container(height=60),
+                # Logo — white background, logo centered
                 ft.Container(
                     content=ft.Image(
                         src="assets/icon.png",
-                        width=90, height=90,
+                        width=130,
+                        height=130,
                         fit=ft.BoxFit.CONTAIN,
                     ),
                     alignment=ft.Alignment(0, 0),
                 ),
-                ft.Container(height=16),
-                title_text,
-                subtitle_text,
+                ft.Container(height=8),
+                ft.Text(
+                    "Civil Service Reviewer 2026",
+                    size=18, weight=ft.FontWeight.W_800,
+                    color=NAVY,
+                    text_align=ft.TextAlign.CENTER,
+                ),
+                ft.Text(
+                    "100% Free • For all Filipino public servants",
+                    size=12, color=GRAY,
+                    text_align=ft.TextAlign.CENTER,
+                ),
                 ft.Container(height=28),
-                name_container,
-                ft.Container(height=12),
+                tabs_container,
+                ft.Container(height=20),
+                signup_only,
                 email_field,
-                ft.Container(height=12),
+                ft.Container(height=10),
                 password_field,
-                ft.Container(height=12),
-                track_container,
                 ft.Container(height=8),
                 error_text,
                 ft.Container(height=16),
                 submit_container,
-                ft.Container(height=16),
-                ft.Row(
-                    [toggle_text,
-                     ft.GestureDetector(
-                         content=toggle_link,
-                         on_tap=toggle_mode,
-                     )],
-                    alignment=ft.MainAxisAlignment.CENTER,
+                ft.Container(height=20),
+                ft.Text(
+                    "By continuing, you agree to use this app\nresponsibly for exam preparation.",
+                    size=10, color=GRAY_SOFT,
+                    text_align=ft.TextAlign.CENTER,
                 ),
                 ft.Container(height=40),
             ],
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             scroll=ft.ScrollMode.AUTO,
+            expand=True,
         ),
-        padding=ft.Padding.all(28),
+        padding=ft.Padding.symmetric(horizontal=24, vertical=0),
         expand=True,
-        bgcolor=APP_BG,
+        bgcolor=WHITE,
     )
 
     return ft.View(
         route="/login",
         controls=[body],
         padding=0,
-        bgcolor=APP_BG,
+        bgcolor=WHITE,
     )
