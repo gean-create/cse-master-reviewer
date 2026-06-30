@@ -33,15 +33,28 @@ def build(page: ft.Page, state) -> ft.View:
                     ft.Text(f"{name}! 👋", size=22,
                             weight=ft.FontWeight.W_800, color=WHITE),
                 ], spacing=0, expand=True),
-                ft.Container(
-                    content=ft.Image(
-                        src="assets/icon.png", width=44, height=44,
-                        fit=ft.BoxFit.CONTAIN,
+                ft.Row([
+                    ft.GestureDetector(
+                        content=ft.Container(
+                            content=ft.Icon(ft.Icons.CALENDAR_MONTH_ROUNDED,
+                                           color=WHITE, size=20),
+                            bgcolor=WHITE + "22",
+                            border_radius=ft.BorderRadius.all(12),
+                            padding=ft.Padding.all(10),
+                        ),
+                        on_tap=lambda _: page.go("/schedule"),
                     ),
-                    border_radius=ft.BorderRadius.all(22),
-                    bgcolor=WHITE + "22",
-                    padding=ft.Padding.all(3),
-                ),
+                    ft.Container(width=8),
+                    ft.Container(
+                        content=ft.Image(
+                            src="assets/icon.png", width=40, height=40,
+                            fit=ft.BoxFit.CONTAIN,
+                        ),
+                        border_radius=ft.BorderRadius.all(20),
+                        bgcolor=WHITE + "22",
+                        padding=ft.Padding.all(3),
+                    ),
+                ], spacing=0),
             ], vertical_alignment=ft.CrossAxisAlignment.CENTER),
             ft.Container(height=6),
             ft.Row([
