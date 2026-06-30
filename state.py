@@ -8,7 +8,6 @@ import datetime as dt
 import flet as ft
 
 from data.questions import QUESTIONS, by_ids
-from data.flashcards import FLASHCARDS
 from theme import SUBJECTS
 
 STORAGE_KEY = "cse_master_reviewer_state_v1"
@@ -46,7 +45,7 @@ ACHIEVEMENT_DEFS = [
     {"id": "perfect_score", "title": "Perfect Score",      "desc": "Score 100% on any quiz or exam.",         "icon": "STAR_ROUNDED"},
     {"id": "exam_passed",   "title": "Exam Ready",         "desc": "Pass a mock exam (80%+).",                "icon": "EMOJI_EVENTS_ROUNDED"},
     {"id": "all_rounder",   "title": "All-Rounder",        "desc": "Finish the lesson in all 4 subjects.",    "icon": "SCHOOL_ROUNDED"},
-    {"id": "flash_16",      "title": "Flashcard Fanatic",  "desc": "Master 16 flashcards.",                   "icon": "BOLT_ROUNDED"},
+    {"id": "flash_16",      "title": "Chapter Champion",   "desc": "Complete 4 chapter tests.",               "icon": "BOLT_ROUNDED"},
 ]
 
 
@@ -162,14 +161,14 @@ class AppState:
         return correct / total if total else None
 
     def subject_mastery_pct(self, subject):
-        """Returns float 0.0–1.0."""
+        """Returns float 0.0–1.0.
+        40% lesson/reviewer-book completion, 60% quiz/chapter-test accuracy.
+        """
         st = self.subject_state(subject)
-        deck_size = max(len(FLASHCARDS.get(subject, [])), 1)
-        lesson_component = 0.25 if st["lesson_done"] else 0.0
-        flash_component = 0.25 * (len(st["flashcards_mastered"]) / deck_size)
+        lesson_component = 0.40 if st["lesson_done"] else 0.0
         acc = self.subject_accuracy(subject)
-        quiz_component = 0.50 * acc if acc is not None else 0.0
-        return min(1.0, lesson_component + flash_component + quiz_component)
+        quiz_component = 0.60 * acc if acc is not None else 0.0
+        return min(1.0, lesson_component + quiz_component)
 
     def readiness_score(self):
         """Returns float 0.0–1.0."""
@@ -287,7 +286,7 @@ class AppState:
             unlocked.add("exam_passed")
         if all(self.subject_state(s)["lesson_done"] for s in SUBJECTS):
             unlocked.add("all_rounder")
-        if sum(len(self.subject_state(s)["flashcards_mastered"]) for s in SUBJECTS) >= 16:
+        if sum(1 for a in qh if a.get("mode") == "chapter_test") >= 4:
             unlocked.add("flash_16")
         return unlocked
 
