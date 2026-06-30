@@ -7,7 +7,7 @@ from state import AppState
 def build_router(page: ft.Page, state: AppState):
     from screens import (
         splash, onboarding, login, home, topics, lesson,
-        reviewer_book, quiz, exam_config, mock_exam, results,
+        reviewer_book, schedule, quiz, exam_config, mock_exam, results,
         analytics, review, achievements, profile
     )
 
@@ -30,7 +30,7 @@ def build_router(page: ft.Page, state: AppState):
     }
 
     ROOT_ROUTES = {"/home", "/topics", "/analytics", "/profile",
-                   "/splash", "/onboarding", "/login"}
+                   "/splash", "/onboarding", "/login", "/schedule"}
 
     def on_route_change(e: ft.RouteChangeEvent):
         route = e.route.split("?")[0]
