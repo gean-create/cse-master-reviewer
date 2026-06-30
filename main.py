@@ -7,7 +7,7 @@ from state import AppState
 def build_router(page: ft.Page, state: AppState):
     from screens import (
         splash, onboarding, login, home, topics, lesson,
-        flashcards, quiz, exam_config, mock_exam, results,
+        reviewer_book, quiz, exam_config, mock_exam, results,
         analytics, review, achievements, profile
     )
 
