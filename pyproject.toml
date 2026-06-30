@@ -10,7 +10,7 @@ module = "main"
 [tool.flet.android]
 min_sdk_version = 24
 target_sdk_version = 34
-icon = "assets/logo.svg"
+icon = "assets/icon.png"
 permissions = [
     "android.permission.INTERNET",
     "android.permission.ACCESS_NETWORK_STATE",
