@@ -750,6 +750,144 @@ QUESTIONS = [
  "answer":1,
  "explanation":"Standard office procedure requires incoming mail to be date-stamped and logged/registered upon receipt."},
 
+{"id":"c009","track":"subprofessional","subject":"Clerical Ability","category":"Filing",
+ "question":"Arrange in alphabetical filing order: Santos, Maria; San Pedro, Juan; Santiago, Ana",
+ "choices":[
+     "San Pedro, Santiago, Santos",
+     "Santiago, San Pedro, Santos",
+     "Santos, Santiago, San Pedro",
+     "San Pedro, Santos, Santiago"
+ ],
+ "answer":0,
+ "explanation":"Comparing letter by letter: 'San P' < 'Santi' < 'Santo', so San Pedro, Santiago, Santos."},
+
+{"id":"c010","track":"subprofessional","subject":"Clerical Ability","category":"Filing",
+ "question":"In numerical filing, which file number should be placed FIRST?",
+ "choices":["10452","10425","10245","10254"],
+ "answer":2,
+ "explanation":"Numerical filing follows ascending numeric order: 10245 is the smallest number among the choices."},
+
+{"id":"c011","track":"subprofessional","subject":"Clerical Ability","category":"Filing",
+ "question":"When filing chronologically by date received, which document is filed on TOP (most recent first)?",
+ "choices":["Received Jan 5","Received Jan 20","Received Feb 1","Received Mar 15"],
+ "answer":3,
+ "explanation":"Chronological filing with most-recent-first places the latest date (March 15) on top."},
+
+{"id":"c012","track":"subprofessional","subject":"Clerical Ability","category":"Filing",
+ "question":"Names with titles like 'Dr.' or 'Atty.' are filed:",
+ "choices":[
+     "By the title first",
+     "By the surname, ignoring the title",
+     "Alphabetically by title only",
+     "At the end of the file regardless of name"
+ ],
+ "answer":1,
+ "explanation":"Standard filing rules disregard titles (Dr., Atty., Mr.) and file by surname first."},
+
+{"id":"c013","track":"subprofessional","subject":"Clerical Ability","category":"Coding",
+ "question":"If the code for RECORD is 18-5-3-15-18-4 (A=1,B=2...), what does 9-4-5-1 spell?",
+ "choices":["IDEA","DIEA","IDAE","EDIA"],
+ "answer":0,
+ "explanation":"9=I, 4=D, 5=E, 1=A → IDEA"},
+
+{"id":"c014","track":"subprofessional","subject":"Clerical Ability","category":"Coding",
+ "question":"In a code, each letter is shifted 2 positions forward (A→C, B→D...). What is the code for 'FILE'?",
+ "choices":["HKNG","GJMF","HJNG","HKMF"],
+ "answer":0,
+ "explanation":"F→H, I→K, L→N, E→G. The coded word is HKNG."},
+
+{"id":"c015","track":"subprofessional","subject":"Clerical Ability","category":"Coding",
+ "question":"If CLERK is coded as DMFSL (each letter +1), how is OFFICE coded?",
+ "choices":["PGGJDF","PGGJEF","OGGJDF","PHHJDF"],
+ "answer":0,
+ "explanation":"Each letter shifts +1: O→P, F→G, F→G, I→J, C→D, E→F = PGGJDF"},
+
+{"id":"c016","track":"subprofessional","subject":"Clerical Ability","category":"Spelling",
+ "question":"Which word is spelled CORRECTLY?",
+ "choices":["Occured","Occurred","Ocurred","Occureed"],
+ "answer":1,
+ "explanation":"The correct spelling is 'Occurred' — double C and double R."},
+
+{"id":"c017","track":"subprofessional","subject":"Clerical Ability","category":"Spelling",
+ "question":"Identify the misspelled word: Personnel, Definitely, Seperate, Necessary",
+ "choices":["Personnel","Definitely","Seperate","Necessary"],
+ "answer":2,
+ "explanation":"'Seperate' is misspelled. Correct spelling is 'Separate' (a-r-a)."},
+
+{"id":"c018","track":"subprofessional","subject":"Clerical Ability","category":"Spelling",
+ "question":"Which is the CORRECT spelling?",
+ "choices":["Embarrassment","Embarassment","Embarrasment","Embarasment"],
+ "answer":0,
+ "explanation":"'Embarrassment' has double R and double S."},
+
+{"id":"c019","track":"subprofessional","subject":"Clerical Ability","category":"Records Management",
+ "question":"What is the FIRST step in the records life cycle?",
+ "choices":["Disposal","Creation","Storage","Retrieval"],
+ "answer":1,
+ "explanation":"The records life cycle begins with creation, followed by maintenance/use, storage, and eventual disposal."},
+
+{"id":"c020","track":"subprofessional","subject":"Clerical Ability","category":"Records Management",
+ "question":"Records that must be kept for a limited period and then may be destroyed are called:",
+ "choices":["Vital records","Permanent records","Active records","Temporary/disposable records"],
+ "answer":3,
+ "explanation":"Temporary or disposable records have a defined retention period after which they may be legally destroyed."},
+
+{"id":"c021","track":"subprofessional","subject":"Clerical Ability","category":"Records Management",
+ "question":"What does 'retention period' mean in records management?",
+ "choices":[
+     "The maximum file size allowed",
+     "The length of time a record must be kept before disposal",
+     "The time it takes to retrieve a record",
+     "The number of copies kept"
+ ],
+ "answer":1,
+ "explanation":"Retention period is the legally or organizationally mandated length of time records must be preserved."},
+
+{"id":"c022","track":"subprofessional","subject":"Clerical Ability","category":"Office Procedures",
+ "question":"When answering office telephone calls, the FIRST thing to do is:",
+ "choices":[
+     "Ask who is calling",
+     "Identify the office/department and greet the caller",
+     "Put the caller on hold immediately",
+     "Transfer the call right away"
+ ],
+ "answer":1,
+ "explanation":"Proper telephone etiquette requires identifying your office and greeting the caller first."},
+
+{"id":"c023","track":"subprofessional","subject":"Clerical Ability","category":"Office Procedures",
+ "question":"Outgoing mail should be checked for all EXCEPT:",
+ "choices":[
+     "Correct address",
+     "Proper postage",
+     "Enclosures complete",
+     "Sender's personal opinion on the matter"
+ ],
+ "answer":3,
+ "explanation":"Outgoing mail checks involve address, postage, and enclosures — not personal opinions."},
+
+{"id":"c024","track":"subprofessional","subject":"Clerical Ability","category":"Office Procedures",
+ "question":"A tickler file is used to:",
+ "choices":[
+     "Store permanent records only",
+     "Track and remind staff of pending tasks/deadlines by date",
+     "Encrypt sensitive documents",
+     "Replace the need for filing cabinets"
+ ],
+ "answer":1,
+ "explanation":"A tickler file is a date-organized reminder system for follow-up actions and deadlines."},
+
+{"id":"c025","track":"subprofessional","subject":"Clerical Ability","category":"Number Checking",
+ "question":"Compare these two number sets — are they the SAME or DIFFERENT? Set A: 4827193  Set B: 4827193",
+ "choices":["Same","Different"],
+ "answer":0,
+ "explanation":"Both sets read identically digit by digit: 4-8-2-7-1-9-3."},
+
+{"id":"c026","track":"subprofessional","subject":"Clerical Ability","category":"Number Checking",
+ "question":"Compare: Set A: 5093827461  Set B: 5093827641 — Same or Different?",
+ "choices":["Same","Different"],
+ "answer":1,
+ "explanation":"Set A has '...746...' while Set B has '...764...' — the 6 and 4 are swapped, making them different."},
+
 ]
 
 def by_subject(subject):
