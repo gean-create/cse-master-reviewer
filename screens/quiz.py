@@ -154,7 +154,8 @@ def build(page: ft.Page, state) -> ft.View:
     def on_back(_):
         page.go("/topics" if subj else "/home")
 
-    title = (f"{subj} Quiz" if subj and mode == "practice"
+    title = (f"{subj} Chapter Test" if mode == "chapter_test"
+             else f"{subj} Quiz" if subj and mode == "practice"
              else "Daily Challenge" if mode == "daily"
              else "Retake Quiz")
     _render()
