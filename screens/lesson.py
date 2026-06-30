@@ -13,7 +13,7 @@ def build(page: ft.Page, state) -> ft.View:
     def on_continue(_):
         state.mark_lesson_done(subj)
         state.save_bg()
-        page.go("/flashcards")
+        page.go("/reviewer_book")
 
     def on_back(_):
         page.go("/topics")
@@ -88,7 +88,7 @@ def build(page: ft.Page, state) -> ft.View:
         tip_box,
         ft.Container(height=28),
         comp.primary_button(
-            "Continue to Flashcards",
+            "Continue to Reviewer Book",
             on_click=on_continue,
             expand=True,
             icon=ft.Icons.ARROW_FORWARD_ROUNDED,
