@@ -29,8 +29,8 @@ def build(page: ft.Page, state) -> ft.View:
     def on_continue(_):
         state.mark_lesson_done(subj)
         ids = [q["id"] for q in items]
-        state.active_question_ids = ids[: min(10, len(ids))]
-        state.active_mode = "practice"
+        state.active_question_ids = ids  # test covers ALL items just reviewed
+        state.active_mode = "chapter_test"
         page.go("/quiz")
 
     list_col = ft.Column(spacing=0)
@@ -183,8 +183,28 @@ def build(page: ft.Page, state) -> ft.View:
             content=ft.Column(
                 [list_col,
                  ft.Container(height=8),
+                 ft.Container(
+                     content=ft.Column([
+                         ft.Row([
+                             ft.Icon(ft.Icons.FACT_CHECK_ROUNDED,
+                                    color=GOLD, size=18),
+                             ft.Text("Ready for a quick check?",
+                                    size=13, weight=ft.FontWeight.W_700,
+                                    color=NAVY),
+                         ], spacing=8),
+                         ft.Text(
+                             f"Test yourself on all {len(items)} items "
+                             f"you just reviewed in this chapter.",
+                             size=11, color=GRAY,
+                         ),
+                     ], spacing=4),
+                     bgcolor=GOLD_50,
+                     border_radius=ft.BorderRadius.all(12),
+                     padding=ft.Padding.all(14),
+                 ),
+                 ft.Container(height=12),
                  comp.primary_button(
-                     "Continue to Practice Quiz →",
+                     f"Take Chapter Test ({len(items)} items) →",
                      on_click=on_continue, expand=True,
                      icon=ft.Icons.ARROW_FORWARD_ROUNDED,
                  ),
