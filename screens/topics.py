@@ -11,8 +11,8 @@ def build(page: ft.Page, state) -> ft.View:
         pct = state.subject_mastery_pct(subj)
         acc = state.subject_accuracy(subj)
         lesson_done = state.subject_state(subj).get("lesson_done", False)
-        fc_state = state.subject_state(subj)
-        mastered = len(fc_state.get("flashcards_mastered", []))
+        from data.questions import by_subject
+        item_count = len(by_subject(subj))
         acc_txt = f"{int(acc*100)}% accuracy" if acc is not None else "Not attempted yet"
         pct_txt = f"{int(pct*100)}% mastery"
 
@@ -32,10 +32,10 @@ def build(page: ft.Page, state) -> ft.View:
                         weight=ft.FontWeight.W_500),
             ], spacing=4),
             ft.Row([
-                ft.Icon(ft.Icons.STYLE_ROUNDED,
-                        color=GREEN if mastered >= 8 else GRAY, size=14),
-                ft.Text(f"{mastered}/8 cards", size=12,
-                        color=GREEN if mastered >= 8 else GRAY,
+                ft.Icon(ft.Icons.MENU_BOOK_ROUNDED,
+                        color=GREEN if item_count > 0 else GRAY, size=14),
+                ft.Text(f"{item_count} items", size=12,
+                        color=GREEN if item_count > 0 else GRAY,
                         weight=ft.FontWeight.W_500),
             ], spacing=4),
         ]
